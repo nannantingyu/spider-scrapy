@@ -1,0 +1,1 @@
+{"lang": "1", "ent_ticket": "09385f5071d3259063e712df1010a355", "page_rows": 50, "PHPSESSID": "di38med1vhi90ppal10u1qn9d1", "timezone": "DEFAULT_TIME_ZONE", "ticket": "09385f5071d3259063e712df1010a355", "__period": "today"}

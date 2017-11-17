@@ -1,0 +1,8 @@
+.env
+*.pyc
+crawl_jujin8/bverify.jpg
+crawl_jujin8/gverify.jpg
+crawl_jujin8/cookies/
+crawl_jujin8/logs/
+crawl_jujin8/verify.jpg
+crawl_jujin8/tesseract.log

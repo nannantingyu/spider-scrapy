@@ -1,0 +1,1021 @@
+2017-11-17 09:33:01 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2017-11-17 09:33:01 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'crawl.middlewares.middlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'crawl.middlewares.middlewares.CookiesSaveingMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-11-17 09:33:01 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-11-17 09:33:01 [scrapy.middleware] INFO: Enabled item pipelines:
+['crawl.pipelines.database.DatabasePipeline']
+2017-11-17 09:33:01 [scrapy.core.engine] INFO: Spider opened
+2017-11-17 09:33:01 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-17 09:33:01 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg2/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 09:33:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg3/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:33:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg4/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 09:33:08 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg5/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 09:33:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg6/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg7/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:33:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg8/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:33:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg9/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg10/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:33:20 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg11/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:33:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg12/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 09:33:24 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg13/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg14/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:33:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg15/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:33:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg16/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:33:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg17/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:33:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg18/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:33:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg19/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 09:33:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg20/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:33:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg21/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:33:43 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg22/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:46 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg23/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:49 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg24/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:33:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg25/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 09:33:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg25/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:33:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg26/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:33:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg27/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:33:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg28/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 09:33:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg29/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg30/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:01 [scrapy.extensions.logstats] INFO: Crawled 29 pages (at 29 pages/min), scraped 826 items (at 826 items/min)
+2017-11-17 09:34:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg31/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:34:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg32/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 09:34:06 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg33/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:34:08 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg34/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg35/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 09:34:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg36/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:34:15 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg37/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:34:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg38/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:34:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg39/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:34:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg40/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 09:34:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg40/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg41/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:34:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg42/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 09:34:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg43/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 09:34:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg43/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 09:34:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg44/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:34:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg45/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 09:34:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg46/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:34:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg47/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg48/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:34:39 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg49/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:34:42 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg50/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 09:34:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg51/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 09:34:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg51/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:34:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg52/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 09:34:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg53/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:34:49 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg54/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 09:34:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg55/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:34:53 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg56/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:34:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg57/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:34:59 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg58/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:35:01 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg59/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:35:01 [scrapy.extensions.logstats] INFO: Crawled 57 pages (at 28 pages/min), scraped 1590 items (at 764 items/min)
+2017-11-17 09:35:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg60/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:35:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg61/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 09:35:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg62/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg63/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 09:35:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg64/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:35:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg65/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:15 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg66/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:35:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg67/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:35:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg68/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:35:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg69/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 09:35:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg69/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:35:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg70/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:24 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg71/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:35:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg72/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg73/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg74/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg75/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 09:35:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg76/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 09:35:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg77/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:35:39 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg78/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:35:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg79/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 09:35:43 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg80/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 09:35:45 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg81/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:35:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg82/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:35:50 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg83/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:35:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg84/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 09:35:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg85/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 09:35:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg85/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:35:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg86/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:35:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg87/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:35:59 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg88/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:36:01 [scrapy.extensions.logstats] INFO: Crawled 87 pages (at 30 pages/min), scraped 2426 items (at 836 items/min)
+2017-11-17 09:36:01 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg89/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:36:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg90/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 09:36:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg90/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 09:36:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg91/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 09:36:06 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg92/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 09:36:06 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg92/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 09:36:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg93/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 09:36:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg94/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 09:36:12 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg95/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 09:36:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg96/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 09:36:15 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg97/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 09:36:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg98/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 09:36:20 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg99/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:36:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg100/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 09:36:24 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-11-17 09:36:24 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 60285,
+ 'downloader/request_count': 107,
+ 'downloader/request_method_count/GET': 107,
+ 'downloader/response_bytes': 3024129,
+ 'downloader/response_count': 107,
+ 'downloader/response_status_count/200': 99,
+ 'downloader/response_status_count/301': 8,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 11, 17, 1, 36, 24, 867000),
+ 'item_scraped_count': 2730,
+ 'log_count/INFO': 117,
+ 'request_depth_max': 98,
+ 'response_received_count': 99,
+ 'scheduler/dequeued': 107,
+ 'scheduler/dequeued/memory': 107,
+ 'scheduler/enqueued': 107,
+ 'scheduler/enqueued/memory': 107,
+ 'start_time': datetime.datetime(2017, 11, 17, 1, 33, 1, 326000)}
+2017-11-17 09:36:24 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-11-17 11:26:26 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2017-11-17 11:26:26 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'crawl.middlewares.middlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'crawl.middlewares.middlewares.CookiesSaveingMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-11-17 11:26:26 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-11-17 11:26:26 [scrapy.middleware] INFO: Enabled item pipelines:
+['crawl.pipelines.database.DatabasePipeline']
+2017-11-17 11:26:26 [scrapy.core.engine] INFO: Spider opened
+2017-11-17 11:26:26 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-17 11:26:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg2/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:26:29 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg3/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:26:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg4/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:26:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg5/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:26:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg6/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:26:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg7/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:26:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg8/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:26:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg8/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:26:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg9/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:26:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg10/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:26:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg11/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:26:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg12/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:26:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg13/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:27:01 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg14/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:27:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg15/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:27:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg16/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:27:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg17/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:27:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg18/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:27:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg19/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:27:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg20/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:27:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg21/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:27:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg22/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:27:26 [scrapy.extensions.logstats] INFO: Crawled 21 pages (at 21 pages/min), scraped 581 items (at 581 items/min)
+2017-11-17 11:27:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg23/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:27:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg24/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:27:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg25/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:27:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg26/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:27:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg27/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:27:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg28/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:27:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg28/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:27:42 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg29/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:27:45 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg30/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:27:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg31/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:27:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg32/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:27:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg33/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:27:57 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg34/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:27:59 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg35/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg36/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:28:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg37/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:28:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg38/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:28:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg39/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg40/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:28:15 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg41/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:28:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg42/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:28:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg43/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:28:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg44/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:28:26 [scrapy.extensions.logstats] INFO: Crawled 43 pages (at 22 pages/min), scraped 1214 items (at 633 items/min)
+2017-11-17 11:28:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg45/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:28:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg46/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:28:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg47/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:28:36 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg48/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:28:36 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg48/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:28:36 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg49/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg50/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:28:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg50/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:28:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg51/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:28:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg52/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg53/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:50 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg54/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:28:53 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg55/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:28:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg56/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:29:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg57/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:29:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg58/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:29:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg59/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:29:12 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg60/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:29:12 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg60/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:29:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg61/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:29:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg61/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:29:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg62/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:29:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg63/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:29:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg64/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:29:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg65/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg66/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:29:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg66/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg67/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:29:26 [scrapy.extensions.logstats] INFO: Crawled 66 pages (at 23 pages/min), scraped 1746 items (at 532 items/min)
+2017-11-17 11:29:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg68/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg69/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:29:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg69/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:29:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg70/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg71/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:29:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg72/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:29:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg72/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:29:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg73/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:42 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg74/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:29:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg75/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:29:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg76/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:50 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg77/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:29:53 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg78/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:29:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg79/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:29:59 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg80/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:30:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg81/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:30:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg82/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:30:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg83/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:30:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg84/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:30:12 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg85/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:30:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg86/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:30:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg87/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:30:20 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg88/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:30:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg89/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:30:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg90/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:30:26 [scrapy.extensions.logstats] INFO: Crawled 89 pages (at 23 pages/min), scraped 2376 items (at 630 items/min)
+2017-11-17 11:30:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg91/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:30:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg92/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:30:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg93/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:30:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg93/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:30:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg94/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:30:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg94/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:30:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg95/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:30:36 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg96/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:30:39 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg97/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:30:42 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg98/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:30:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg99/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:30:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg100/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:30:51 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-11-17 11:30:51 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 62528,
+ 'downloader/request_count': 110,
+ 'downloader/request_method_count/GET': 110,
+ 'downloader/response_bytes': 2959436,
+ 'downloader/response_count': 110,
+ 'downloader/response_status_count/200': 99,
+ 'downloader/response_status_count/301': 11,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 11, 17, 3, 30, 51, 390000),
+ 'item_scraped_count': 2640,
+ 'log_count/INFO': 121,
+ 'request_depth_max': 98,
+ 'response_received_count': 99,
+ 'scheduler/dequeued': 110,
+ 'scheduler/dequeued/memory': 110,
+ 'scheduler/enqueued': 110,
+ 'scheduler/enqueued/memory': 110,
+ 'start_time': datetime.datetime(2017, 11, 17, 3, 26, 26, 658000)}
+2017-11-17 11:30:51 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-11-17 11:33:44 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2017-11-17 11:33:44 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'crawl.middlewares.middlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'crawl.middlewares.middlewares.CookiesSaveingMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-11-17 11:33:44 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-11-17 11:33:44 [scrapy.middleware] INFO: Enabled item pipelines:
+['crawl.pipelines.database.DatabasePipeline']
+2017-11-17 11:33:44 [scrapy.core.engine] INFO: Spider opened
+2017-11-17 11:33:44 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-17 11:33:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg2/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:33:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg3/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:33:50 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg4/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:33:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg5/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:33:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg6/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:33:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg7/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:33:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg8/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:34:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg9/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg10/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:06 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg11/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:08 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg12/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:34:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg13/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:34:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg14/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:34:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg15/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:34:15 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg16/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:34:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg17/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:34:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg18/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg19/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:34:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg20/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:34:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg21/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:34:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg22/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:34:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg23/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:34:34 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg24/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:34:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg25/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:39 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg26/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:34:41 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg27/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:34:43 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg28/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:34:44 [scrapy.extensions.logstats] INFO: Crawled 27 pages (at 27 pages/min), scraped 785 items (at 785 items/min)
+2017-11-17 11:34:46 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg29/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:34:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg30/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:34:50 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg31/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:34:53 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg32/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:34:55 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg33/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:34:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg34/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:35:01 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg35/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:35:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg36/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg37/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:35:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg37/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:35:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg38/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:35:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg39/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:35:12 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg40/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg41/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:35:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg42/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:35:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg43/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:35:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg43/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:35:20 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg44/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:35:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg45/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg46/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg47/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:35:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg48/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:35:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg49/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:35:40 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg50/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:35:43 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg51/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:44 [scrapy.extensions.logstats] INFO: Crawled 50 pages (at 23 pages/min), scraped 1416 items (at 631 items/min)
+2017-11-17 11:35:46 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg52/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:35:49 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg53/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:35:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg54/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:35:55 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg55/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:35:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg56/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:36:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg57/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:36:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg58/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:36:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg58/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:36:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg59/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:36:06 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg60/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:36:08 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg61/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:10 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg62/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg63/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:17 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg64/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:36:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg65/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:36:22 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg66/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg67/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:36:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg68/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:36:29 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg69/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg70/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:36:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg71/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:36:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg72/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:36:37 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg73/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:39 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg74/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:36:42 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg75/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg76/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:36:44 [scrapy.extensions.logstats] INFO: Crawled 74 pages (at 24 pages/min), scraped 2130 items (at 714 items/min)
+2017-11-17 11:36:46 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg77/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:36:46 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg77/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:36:47 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg78/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg79/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg80/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg81/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:36:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg82/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:36:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg83/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:37:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg84/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:37:03 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg85/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:37:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg86/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:37:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg87/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:37:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg88/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:37:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg89/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:37:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg90/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:37:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg91/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:37:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg92/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:37:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg92/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:37:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg93/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:37:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg93/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:37:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg94/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:37:21 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg95/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:37:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg96/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:37:26 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg97/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:37:28 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg98/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:37:31 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg99/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:37:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg100/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:37:36 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-11-17 11:37:36 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 59429,
+ 'downloader/request_count': 105,
+ 'downloader/request_method_count/GET': 105,
+ 'downloader/response_bytes': 3049473,
+ 'downloader/response_count': 105,
+ 'downloader/response_status_count/200': 99,
+ 'downloader/response_status_count/301': 6,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 11, 17, 3, 37, 36, 523000),
+ 'item_scraped_count': 2790,
+ 'log_count/INFO': 115,
+ 'request_depth_max': 98,
+ 'response_received_count': 99,
+ 'scheduler/dequeued': 105,
+ 'scheduler/dequeued/memory': 105,
+ 'scheduler/enqueued': 105,
+ 'scheduler/enqueued/memory': 105,
+ 'start_time': datetime.datetime(2017, 11, 17, 3, 33, 44, 652000)}
+2017-11-17 11:37:36 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-11-17 11:43:18 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2017-11-17 11:43:18 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'crawl.middlewares.middlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'crawl.middlewares.middlewares.CookiesSaveingMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-11-17 11:43:18 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-11-17 11:43:18 [scrapy.middleware] INFO: Enabled item pipelines:
+['crawl.pipelines.database.DatabasePipeline']
+2017-11-17 11:43:18 [scrapy.core.engine] INFO: Spider opened
+2017-11-17 11:43:18 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-17 11:43:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg1/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:43:20 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-11-17 11:43:20 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 344,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 32098,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 11, 17, 3, 43, 20, 978000),
+ 'item_scraped_count': 30,
+ 'log_count/INFO': 8,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2017, 11, 17, 3, 43, 18, 662000)}
+2017-11-17 11:43:20 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-11-17 11:43:44 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2017-11-17 11:43:44 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'crawl.middlewares.middlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'crawl.middlewares.middlewares.CookiesSaveingMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-11-17 11:43:44 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-11-17 11:43:44 [scrapy.middleware] INFO: Enabled item pipelines:
+['crawl.pipelines.database.DatabasePipeline']
+2017-11-17 11:43:44 [scrapy.core.engine] INFO: Spider opened
+2017-11-17 11:43:44 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-17 11:43:44 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg101/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:43:49 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg102/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:43:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg103/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:43:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg103/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:43:52 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg104/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:43:55 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg105/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3
+2017-11-17 11:43:57 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg106/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:43:59 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg107/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:44:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg108/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:04 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg109/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:44:07 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg110/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:44:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg111/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:44:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg112/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6
+2017-11-17 11:44:13 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg113/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:44:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg114/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg115/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:44:20 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg116/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg117/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:25 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg118/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:44:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg119/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg120/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:44:32 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg121/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:44:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg122/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:44:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg122/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:44:35 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg123/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:44:38 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg124/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:44:40 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg125/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:44:43 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg126/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:44:44 [scrapy.extensions.logstats] INFO: Crawled 26 pages (at 26 pages/min), scraped 706 items (at 706 items/min)
+2017-11-17 11:44:45 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg127/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:44:48 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg128/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:44:51 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg129/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:44:54 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg130/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:44:56 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg131/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+2017-11-17 11:44:58 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg132/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:45:00 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg133/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+2017-11-17 11:45:02 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg134/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:45:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg135/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:45:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg135/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6
+2017-11-17 11:45:05 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg136/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:45:09 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg137/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:45:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg138/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:45:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg138/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:45:11 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg139/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:45:14 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg140/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:45:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg141/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:45:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg141/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1
+2017-11-17 11:45:16 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg142/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24
+2017-11-17 11:45:18 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg143/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
+2017-11-17 11:45:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg143/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3
+2017-11-17 11:45:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg144/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:45:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg144/, 
+	Current UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:45:19 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg145/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1
+2017-11-17 11:45:23 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg146/, 
+	Current UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5
+2017-11-17 11:45:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg147/, 
+	Current UserAgent: Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+2017-11-17 11:45:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://m.lianjia.com/tj/ershoufang/pg147/, 
+	Current UserAgent: Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11
+2017-11-17 11:45:27 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg148/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3
+2017-11-17 11:45:30 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg149/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3
+2017-11-17 11:45:33 [crawl.middlewares.middlewares] INFO: [Crawl url] https://tj.lianjia.com/ershoufang/pg150/, 
+	Current UserAgent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5
+2017-11-17 11:45:35 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-11-17 11:45:35 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 31547,
+ 'downloader/request_count': 58,
+ 'downloader/request_method_count/GET': 58,
+ 'downloader/response_bytes': 1436092,
+ 'downloader/response_count': 58,
+ 'downloader/response_status_count/200': 50,
+ 'downloader/response_status_count/301': 8,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 11, 17, 3, 45, 35, 269000),
+ 'item_scraped_count': 1260,
+ 'log_count/INFO': 66,
+ 'request_depth_max': 49,
+ 'response_received_count': 50,
+ 'scheduler/dequeued': 58,
+ 'scheduler/dequeued/memory': 58,
+ 'scheduler/enqueued': 58,
+ 'scheduler/enqueued/memory': 58,
+ 'start_time': datetime.datetime(2017, 11, 17, 3, 43, 44, 716000)}
+2017-11-17 11:45:35 [scrapy.core.engine] INFO: Spider closed (finished)
