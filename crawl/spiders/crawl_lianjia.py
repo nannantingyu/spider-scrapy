@@ -3,7 +3,7 @@ import scrapy
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-import datetime, redis, re
+import datetime, redis, re, json
 import crawl.settings as settings
 from crawl.common.util import util
 from crawl.items import LianjiaHouseItem
@@ -16,10 +16,29 @@ class CrawlLianjiaSpider(scrapy.Spider):
     custom_settings = { 'LOG_FILE': 'logs/lianjia_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d'))}
 
     def __init__(self, *args, **kwargs):
-        self.page_all = 100
-        self.page_now = 1
+        self.areas = [
+            {"name": "heping", "page": 0, "now": 1},
+            {"name": "nankai", "page": 0, "now": 1},
+            {"name": "hexi", "page": 0, "now": 1},
+            {"name": "hebei", "page": 0, "now": 1},
+            {"name": "hedong", "page": 0, "now": 1},
+            {"name": "hongqiao", "page": 0, "now": 1},
+            {"name": "xiqing", "page": 0, "now": 1},
+            {"name": "beichen", "page": 0, "now": 1},
+            {"name": "dongli", "page": 0, "now": 1},
+            {"name": "jinnan", "page": 0, "now": 1},
+            {"name": "tanggu", "page": 0, "now": 1},
+            {"name": "kaifaqu", "page": 0, "now": 1},
+            {"name": "diyidajie", "page": 0, "now": 1},
+            {"name": "dierdajie", "page": 0, "now": 1},
+            {"name": "disandajie", "page": 0, "now": 1},
+            {"name": "disidajie", "page": 0, "now": 1},
+            {"name": "diwudajie", "page": 0, "now": 1}
+        ]
+
+        self.area_now = 0
         self.util = util()
-        self.list_url = 'https://tj.lianjia.com/ershoufang/pg{page}/'
+        self.list_url = 'https://tj.lianjia.com/ershoufang/{area}/pg{page}/'
         self.r = redis.Redis(host=settings.REDIS['host'], port=settings.REDIS['port'])
 
         super(CrawlLianjiaSpider, self).__init__(*args, **kwargs)
@@ -50,6 +69,19 @@ class CrawlLianjiaSpider(scrapy.Spider):
             return [scrapy.Request(url, meta={'cookiejar': self.name}, callback=self.parse_list)]
 
     def parse_list(self, response):
+        area = self.areas[self.area_now]
+        if area['page'] == 0:
+            page = response.xpath(".//div[@class='page-box house-lst-page-box']/@page-data").extract_first()
+            if page is not None and "totalPage" in page:
+                page = json.loads(page)
+                page = page['totalPage']
+            else:
+                page = 1
+
+            print page
+            self.areas[self.area_now]['page'] = page
+
+
         lis = response.xpath("//div[@class='leftContent']/ul[@class='sellListContent']/li")
         for li in lis:
             href = li.xpath("./a[contains(@class, 'img')]/@href").extract_first() #链接
@@ -114,9 +146,13 @@ class CrawlLianjiaSpider(scrapy.Spider):
 
     def next_url(self):
         url = None
-        if self.page_now <= self.page_all:
-            url = self.list_url.format(page=self.page_now)
-            self.page_now += 1
+        area = self.areas[self.area_now]
+        if area['now'] <= area['page'] or area['page'] == 0:
+            url = self.list_url.format(area=area['name'], page=area['now'])
+            self.areas[self.area_now]['now'] += 1
+        elif self.area_now < len(self.areas):
+            self.area_now += 1
+            return self.next_url()
 
         print url
         return url

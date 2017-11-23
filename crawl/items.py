@@ -66,3 +66,38 @@ class LianjiaHouseItem(scrapy.Item):
     state = scrapy.Field()
     source_id = scrapy.Field()
     source_url = scrapy.Field()
+
+class LianjiaResidentialItem(scrapy.Item):
+    residential_id = scrapy.Field()
+    name = scrapy.Field()
+    build_year = scrapy.Field()
+    build_num = scrapy.Field()
+    build_type = scrapy.Field()
+    unit_price = scrapy.Field()
+    sell_num = scrapy.Field()
+    rent_num = scrapy.Field()
+    longitude = scrapy.Field()
+    latitude = scrapy.Field()
+
+class LianjiaAgentItem(scrapy.Item):
+    name = scrapy.Field()
+    agent_id = scrapy.Field()
+    reason = scrapy.Field()
+    agent_url = scrapy.Field()
+    agent_level = scrapy.Field()
+    agent_photo = scrapy.Field()
+    feedback_good_rate = scrapy.Field()
+    comment_count = scrapy.Field()
+    total_comment_score = scrapy.Field()
+    agent_phone = scrapy.Field()
+
+class LianjiaFeedbackItem(scrapy.Item):
+    house_id = scrapy.Field()
+    comment = scrapy.Field()
+    agent_id = scrapy.Field()
+
+class LianjiaVisitedItem(scrapy.Item):
+    house_id = scrapy.Field()
+    visited_time = scrapy.Field()
+    agent_id = scrapy.Field()
+    see_count = scrapy.Field()

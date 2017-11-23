@@ -73,8 +73,7 @@ class CrawlLianjiaDetailSpider(scrapy.Spider):
             all_img = []
             for img in images:
                 img = img.replace("120x80", "900x600")
-                self.util.downfile(img)
-                all_img.append(img)
+                all_img.append(self.util.downfile(img))
 
             item['images'] = ','.join(all_img)
             item['state'] = 1
@@ -91,21 +90,23 @@ class CrawlLianjiaDetailSpider(scrapy.Spider):
 
             item['price'] = price
 
-            if residential_id is not None:
-                item['residential_id'] = residential_id
-                self.r.sadd('lianjia:residential', residential_id)
-
             around_info = response.xpath(".//div[@class='aroundInfo']/div[@class='areaName']/span[@class='info']")
             district = around_info.xpath(".//a[1]/text()").extract_first()
             street = around_info.xpath(".//a[2]/text()").extract_first()
             address_info = response.xpath("//div[@class='aroundInfo']/div[@class='areaName']/span[@class='info']").extract_first()
             house_id = response.xpath(".//div[@class='aroundInfo']/div[@class='houseRecord']/span[@class='info']/text()").extract_first()
             house_id = house_id.strip() if house_id is not None else None
+
+            if residential_id is not None:
+                item['residential_id'] = residential_id
+                self.r.sadd('lianjia:residential', residential_id)
+                self.r.set('lianjia:residential:%s'%residential_id, house_id)
+
             if address_info is not None:
                 soup = BeautifulSoup(address_info, 'lxml')
                 strs = []
                 [strs.append(str.replace(u'\xa0', '')) if str.strip() else '' for str in soup.strings]
-                address = strs[-1]
+                address = strs[-1] if len(strs) > 0 else ""
                 item['address'] = address
 
             self.r.sadd("lianjia:visited", house_id)
@@ -155,7 +156,7 @@ class CrawlLianjiaDetailSpider(scrapy.Spider):
             item['layout_datas'] = json.dumps(layout_datas)
 
             if 'property_term' in item:
-                item['property_term'] = item['property_term'].replace('年', '')
+                item['property_term'] = item['property_term'].replace('年', '') if item['property_term'] is not None else ""
 
             redis_id = "lianjia:house:%s" % item["house_id"]
             self.r.set(redis_id, time.time())

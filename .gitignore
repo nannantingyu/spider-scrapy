@@ -6,3 +6,5 @@ crawl_jujin8/cookies/
 crawl_jujin8/logs/
 crawl_jujin8/verify.jpg
 crawl_jujin8/tesseract.log
+crawl/logs/
+crawl/cookies/
