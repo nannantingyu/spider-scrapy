@@ -157,6 +157,8 @@ class CrawlLianjiaDetailSpider(scrapy.Spider):
 
             if 'property_term' in item:
                 item['property_term'] = item['property_term'].replace('年', '') if item['property_term'] is not None else ""
+            if 'area' in item:
+                item['area'] = item['area'].replace('㎡', '') if item['area'] is not None else ""
 
             redis_id = "lianjia:house:%s" % item["house_id"]
             self.r.set(redis_id, time.time())
