@@ -47,7 +47,6 @@ class CrawlFx678CalendarJieduSpider(scrapy.Spider):
         item['data_define'] = data_info[0].xpath("./text()").extract_first()
         item['funny_read'] = data_info[1].xpath("./text()").extract_first()
         item['dataname_id'] = self.id_x
-        item['dtype'] = 'fx678_jiedu'
 
         yield item
 

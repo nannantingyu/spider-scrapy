@@ -2,6 +2,7 @@
 import scrapy
 import datetime
 from crawl.common.util import util
+from crawl.items import CrawlCgseItem
 
 class CrawlCgseSpider(scrapy.Spider):
     name = 'crawl_cgse'
@@ -20,10 +21,8 @@ class CrawlCgseSpider(scrapy.Spider):
         trs = response.xpath(
             ".//table[1]//tr[1]/td[2]/table[1]//tr[4]/td[2]/table[1]//tr[3]/td[1]/table//tr[2]/td[1]/table//tr")
 
-        datas = {}
         for index, tr in enumerate(trs[1:]):
-            data = {}
-            data['no'] = tr.xpath(".//td[1]/div/text()").extract_first()
+            data = CrawlCgseItem()
             data['name'] = tr.xpath(".//td[2]/div/text()").extract_first()
             idr = tr.xpath(".//td[3]/div/a/@href").extract_first()
             idr = idr if idr.startswith('http') else '%s%s' % (self.base_url, idr[1:])
@@ -37,15 +36,14 @@ class CrawlCgseSpider(scrapy.Spider):
             if data['business_status'] is None:
                 data['business_status'] = tr.xpath(".//td[8]/div/font/text()").extract_first()
 
-            datas[index] = data
+            yield data
             yield scrapy.Request(idr, meta={"cookiejar": self.name,
                                             'dont_redirect': True}, callback=self.parse_detail)
 
-        yield datas
 
     def parse_detail(self, response):
         trs = response.xpath(".//table//tr[1]/td[1]/table[1]//tr[1]/td[1]/table[1]/tr")
-        data = {}
+        data = CrawlCgseItem()
         data['registe_address'] = trs[3].xpath(".//td[2]/text()").extract_first()
         data['website'] = trs[4].xpath(".//td[2]/text()").extract_first()
         data['tel'] = trs[5].xpath(".//td[2]/text()").extract_first()

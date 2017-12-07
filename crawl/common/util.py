@@ -3,13 +3,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import hashlib
-import contextlib
-import urllib2
 import os
 import datetime
 import crawl.settings as setting
-from urllib2 import URLError
 import logging
+from contextlib import contextmanager
 import time
 import re
 from urlparse import urlparse
@@ -106,9 +104,9 @@ class Nth(object):
         return strreplace
 
 class Verify(object):
-    def __init__(self, threshold=140, saving_path='data/tmp/'):
-        self.threshold = threshold
-        self.saving_path = saving_path
+    def __init__(self, threshold=140):
+        self.threshold = self.ori_threshold = threshold
+        self.saving_path = setting.Tmp_Dir
 
     def parse_verify(self, name):
         letter_range = [chr(c) for c in range(ord('A'), ord('Z') + 1)]
@@ -116,13 +114,14 @@ class Verify(object):
 
         while self.threshold > 100:
             table = self.image_split()
-            im = Image.open(name)
+            im = Image.open(os.path.join(self.saving_path, name))
             imgry = im.convert('L')
             imgry.save(os.path.join(self.saving_path, 'g' + name))
 
             out = imgry.point(table, '1')
             out.save(os.path.join(self.saving_path, 'b' + name))
-            text = pytesseract.image_to_string(out, True)
+
+            text = pytesseract.image_to_string(out)
             text = text.strip()
             text = text.upper()
 
@@ -135,10 +134,13 @@ class Verify(object):
                         passed = False
                         break
 
-            if passed:
+            if text and passed:
                 return text
             else:
                 self.threshold -= 1
+
+        self.threshold = self.ori_threshold
+        print "cannot decode"
 
     def image_split(self):
         table = []
@@ -149,3 +151,15 @@ class Verify(object):
                 table.append(1)
 
         return table
+
+@contextmanager
+def session_scope(session):
+    sess = session()
+    try:
+        yield sess
+        sess.commit()
+    except:
+        sess.rollback()
+        raise
+    finally:
+        sess.close()

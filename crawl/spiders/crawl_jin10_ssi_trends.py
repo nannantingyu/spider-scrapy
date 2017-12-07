@@ -56,11 +56,13 @@ class CrawlJin10SsiTrendsSpider(scrapy.Spider):
 
     def parse_url(self, response):
         url = self.next_url()
+        print url
         if url is not None:
             yield scrapy.Request(url, meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 404]},
                                  callback=self.parse_page)
 
     def parse_page(self, response):
+        print response.status, response.url
         if response.status != 404:
             r_url = response.url
 
@@ -70,14 +72,16 @@ class CrawlJin10SsiTrendsSpider(scrapy.Spider):
             data = response.body.replace('var dc_real_time_data = ', '')
             data = json.loads(data)
 
+            all_items = {}
             for no, line in enumerate(data['data']):
                 item = {}
                 item['platform'] = params[0][1]
                 item['type'] = params[0][0]
                 item['time'] = line['time']
                 item['long_position'] = line['data']
+                all_items[no] = item
 
-                yield item
+            yield all_items
 
         url = self.next_url()
         if url is not None:

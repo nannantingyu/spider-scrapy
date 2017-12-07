@@ -5,7 +5,6 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from contextlib import contextmanager
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import and_, or_, func
 from crawl.models.util import db_connect, create_news_table
@@ -15,25 +14,18 @@ from crawl.models.crawl_lianjia_feedback import LianjiaFeedback
 from crawl.models.crawl_lianjia_residential import LianjiaResidential
 from crawl.models.crawl_lianjia_visited import LianjiaVisited
 from crawl.items import LianjiaResidentialItem
-
-@contextmanager
-def session_scope(session):
-    """Provide a transactional scope around a series of operations."""
-    sess = session()
-    try:
-        yield sess
-        sess.commit()
-    except:
-        sess.rollback()
-        raise
-    finally:
-        sess.close()
+from crawl.common.util import session_scope
+import logging
 
 class DatabasePipeline(object):
     def __init__(self):
         engine = db_connect()
         create_news_table(engine)
         self.sess = sessionmaker(bind=engine)
+
+    def open_spider(self, spider):
+        """This method is called when the spider is opened."""
+        logging.info('Database pipeline open spider')
 
     def process_item(self, item, spider):
         if spider.name in ['crawl_lianjia', 'crawl_lianjia_detail']:
@@ -47,6 +39,8 @@ class DatabasePipeline(object):
                 self.parse_lianjia_residential(item)
             else:
                 self.parse_agent(item)
+        else:
+            return item
 
     def parse_lianjia_house(self, item):
         with session_scope(self.sess) as session:
@@ -154,4 +148,4 @@ class DatabasePipeline(object):
 
     def close_spider(self, spider):
         """close spider"""
-        print "close"
+        logging.info("Database pipeline close")

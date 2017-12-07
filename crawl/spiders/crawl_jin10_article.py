@@ -118,7 +118,7 @@ class CrawlJin10ArticleSpider(scrapy.Spider):
 
     def get_detail_page(self):
         page = self.r.spop('jin10:page')
-        # return page
+        return page
 
     def parse_body(self, response):
         body = json.loads(response.body)

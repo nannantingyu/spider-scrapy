@@ -2,6 +2,7 @@
 import scrapy
 import datetime, re, redis
 from crawl.common.util import util
+from crawl.items import CrawlFx678EconomicCalendarItem, CrawlEconomicEventItem, CrawlEconomicHolidayItem
 
 class CrawlFx678CalendarSpider(scrapy.Spider):
     name = 'crawl_fx678_calendar'
@@ -36,9 +37,11 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
     }
     url_format = "http://rl.fx678.com/date/{dt}.html"
 
-
     def __init__(self, *args, **kwargs):
         self.util = util()
+        date_diff = datetime.timedelta(days=1)
+        self.date_end = self.date_now + date_diff
+
         super(CrawlFx678CalendarSpider, self).__init__(*args, **kwargs)
         if 'args' in kwargs:
             params = {x[0]: x[1] for x in [[l for l in m.split(":")] for m in kwargs['args'].split(",")]}
@@ -81,11 +84,14 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
                                callback=self.parse_page)]
 
     def parse_page(self, response):
+        print response.status
         trs = response.xpath('//table[@id="current_data"]//tr')[2:-1]
 
         pre_time = None
         prev_country = None
 
+        all_items = {}
+        index = 0
         for tr in trs:
             _cls = tr.xpath("@class").extract_first()
             if _cls in ['unpublished']:
@@ -155,8 +161,7 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
             dataname_id = tds[td_start + 7].xpath("./a/@href").re(r"id\/(\d+)\.")
             dataname_id = dataname_id[0] if len(dataname_id) > 0 else ''
 
-            item = {}
-            item['dtype'] = 'data'
+            item = CrawlFx678EconomicCalendarItem()
             item['country'] = prev_country
             item['quota_name'] = quota_name
             item['pub_time'] = self.date_now.strftime("%Y-%m-%d ") + pre_time + ":00"
@@ -173,11 +178,16 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
             item['source_id'] = self.util.get_sourceid(item['pub_time'] + item['dataname_id'])
 
             self.r.sadd("fx678_jiedu", item['dataname_id'])
-            yield item
+            all_items[index] = item
+            index += 1
+        yield all_items
 
         tb_event = response.xpath(".//table[@class='cjsj_tab2']")[1]
         trs_event = tb_event.xpath(".//tr")
         time_re = re.compile(r"^\d{2}:\d{2}")
+
+        all_event_items = {}
+        index_envet = 0
         for tr in trs_event[1:-1]:
             tds_event = tr.xpath("./td")
 
@@ -192,8 +202,7 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
 
             event = tds_event[4].xpath("./text()").extract_first()
 
-            item = {}
-            item['dtype'] = 'event'
+            item = CrawlEconomicEventItem()
             item['time'] = stime
             item['country'] = country
             item['city'] = address
@@ -201,12 +210,16 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
             item['event'] = event
             item['date'] = self.date_now
             item['source_id'] = self.util.get_sourceid(item['time'] + item['country'] + item['city'])
+            all_event_items[index_envet] = item
+            index_envet += 1
 
-            yield item
+        yield all_event_items
 
         tb_holiday = response.xpath(".//table[@class='cjsj_tab2']")[0]
         trs_holiday = tb_holiday.xpath(".//tr")
         time_re = re.compile(r"^\d{2}:\d{2}")
+        all_holiday_items = {}
+        index_holiday = 0
         for tr in trs_holiday[1:]:
             tds_holiday = tr.xpath("./td")
 
@@ -221,8 +234,7 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
             holiday_name = holidays[0]
             detail = holidays[1] if len(holidays) > 1 else ""
 
-            item = {}
-            item['dtype'] = 'holiday'
+            item = CrawlEconomicHolidayItem()
             item['time'] = stime
             item['country'] = country
             item['market'] = address
@@ -230,8 +242,10 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
             item['detail'] = detail
             item['date'] = self.date_now
             item['source_id'] = self.util.get_sourceid(item['time'] + item['market'] + item['holiday_name'])
+            all_holiday_items[index] = item
+            index_holiday += 1
 
-            yield item
+        yield all_holiday_items
 
         self.date_now = self.date_now + datetime.timedelta(days=1)
         if self.date_now < self.date_end:

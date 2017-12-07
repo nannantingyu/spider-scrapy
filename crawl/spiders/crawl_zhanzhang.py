@@ -15,7 +15,7 @@ class CrawlZhanzhangSpider(scrapy.Spider):
     site_index = 0
 
     custom_settings = {
-        'LOG_FILE': 'logs/chinaz_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d'))
+        'LOG_FILE': 'logs/zhanzhang_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d'))
     }
 
     def start_requests(self):
@@ -43,6 +43,8 @@ class CrawlZhanzhangSpider(scrapy.Spider):
 
     def parse_item(self, response):
         lis = response.xpath(".//ul[@class='ResultListWrap']/li[@class='ReListCent ReLists bor-b1s clearfix']")
+        all_items = {}
+        index = 0
         for li in lis:
             keywords = li.xpath(
                 "./div[@class='w25-0 tl pl10 pr pbimg']/a[@class='ellipsis block']/text()").extract_first()
@@ -67,7 +69,9 @@ class CrawlZhanzhangSpider(scrapy.Spider):
             item['shoulu_title'] = shoulu_title
             item['site'] = self.allsite[self.site_index]
 
-            yield item
+            all_items[index] = item
+            index += 1
+        yield all_items
 
         self.page_index += 1
         if self.page_index <= self.page_all:

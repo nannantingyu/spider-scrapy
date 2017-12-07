@@ -2,6 +2,7 @@
 import scrapy
 import datetime, redis, json
 from crawl.common.util import util
+from crawl.items import CrawlEconomicJieduItem
 
 class CrawlJin10CalendarJieduSpider(scrapy.Spider):
     name = 'crawl_jin10_calendar_jiedu'
@@ -47,7 +48,7 @@ class CrawlJin10CalendarJieduSpider(scrapy.Spider):
         params = self.util.get_url_param(url)
 
         data = json.loads(response.body)
-        item = {}
+        item = CrawlEconomicJieduItem()
         item['next_pub_time'] = data['publictime']
         item['pub_agent'] = data['institutions']
         item['pub_frequency'] = data['frequency']

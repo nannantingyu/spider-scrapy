@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime, redis, json, re
+from crawl.items import CrawlEconomicCalendarItem, CrawlEconomicEventItem, CrawlEconomicHolidayItem
 
 class CrawlJin10CalendarSpider(scrapy.Spider):
     name = 'crawl_jin10_calendar'
@@ -71,8 +72,10 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
 
     def parse_calendar(self, response):
         data = json.loads(response.body)
+        all_item = {}
+        index = 0
         for dt in data:
-            item = {}
+            item = CrawlEconomicCalendarItem()
             item['country'] = dt['country']
             item['quota_name'] = dt['title']
             item['pub_time'] = dt['publictime']
@@ -88,7 +91,9 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
             item['unit'] = dt['unit']
 
             self.r.sadd('jin10:jiedu', "%s_%s"%(item['dataname_id'], item['source_id']))
-            yield item
+            all_item[index] = item
+            index += 1
+        yield all_item
 
         # 抓取财经事件
         yield scrapy.Request("https://rili.jin10.com/datas/{year}/{monthday}/event.json".format(year=self.date_now.year,
@@ -101,8 +106,10 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
     def parse_event(self, response):
         data = json.loads(response.body)
         time_re = re.compile(r"^\d{2}:\d{2}")
+        all_event_item = {}
+        index_event = 0
         for dt in data:
-            item = {}
+            item = CrawlEconomicEventItem()
             dt_time = dt['public_time']
             if len(time_re.findall(dt_time)) > 0:
                 dt_time = self.date_now.strftime("%Y-%m-%d {ori}:00".format(ori=dt_time))
@@ -115,7 +122,9 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
             item['date'] = self.date_now
             item['source_id'] = dt['id']
 
-            yield item
+            all_event_item[index_event] = item
+            index_event += 1
+        yield all_event_item
 
         yield scrapy.Request(
             "https://rili.jin10.com/datas/{year}/{monthday}/holiday.json".format(year=self.date_now.year,
@@ -124,8 +133,10 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
 
     def parse_holiday(self, response):
         data = json.loads(response.body)
+        all_holiday_items = {}
+        index_holiday = 0
         for dt in data:
-            item = {}
+            item = CrawlEconomicHolidayItem()
             item['time'] = dt['date'][0:10]
             item['country'] = dt['country']
             item['market'] = dt['exchangename']
@@ -134,7 +145,10 @@ class CrawlJin10CalendarSpider(scrapy.Spider):
             item['date'] = self.date_now.strftime("%Y-%m-%d")
             item['source_id'] = dt['id']
 
-            yield item
+            all_holiday_items[index_holiday] = item
+            index_holiday += 1
+
+        yield all_holiday_items
 
         dtadd = datetime.timedelta(days=1)
         self.date_now = self.date_now + dtadd

@@ -37,6 +37,8 @@ REDIS = {
     'port': 6379
 }
 
+Tmp_Dir = join(APP_DIR, BOT_NAME, 'tmp')
+
 LOG_LEVEL = logging.INFO
 LOG_FILE = join(APP_DIR, BOT_NAME, 'logs/spider.log')
 LOG_FORMAT = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
@@ -48,7 +50,11 @@ IMAGES_EXPIRES = 30  # 30天内抓取的都不会被重抓
 URL_PREFIX = environ.get("images_url_prefix")
 
 ITEM_PIPELINES = {
-    'crawl.pipelines.database.DatabasePipeline': 1
+    'crawl.pipelines.database.DatabasePipeline': 1,
+    'crawl.pipelines.database_jin10.Jin10Pipeline': 2,
+    'crawl.pipelines.database_fx678.Fx678Pipeline': 3,
+    'crawl.pipelines.database_oprate.OpratePipeline': 4,
+    'crawl.pipelines.database_other.OtherPipeline': 5
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

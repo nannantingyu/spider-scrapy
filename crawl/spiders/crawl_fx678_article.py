@@ -2,6 +2,7 @@
 import scrapy
 import redis, datetime, time, re
 from crawl.common.util import util
+from crawl.items import ArticleItem
 
 class CrawlFx678ArticleSpider(scrapy.Spider):
     name = 'crawl_fx678_article'
@@ -12,9 +13,9 @@ class CrawlFx678ArticleSpider(scrapy.Spider):
 
     type_maps = [
         { 'id': 10103, 'name': '成交观察', 'page': 0 },
-        { 'id': 101, 'name': '行业要闻', 'page': 0 },
-        { 'id': 10102, 'name': '经纪商动态', 'page': 0 },
-        { 'id': 10104, 'name': '行业相关', 'page': 0 }
+        # { 'id': 101, 'name': '行业要闻', 'page': 0 },
+        # { 'id': 10102, 'name': '经纪商动态', 'page': 0 },
+        # { 'id': 10104, 'name': '行业相关', 'page': 0 }
     ]
 
     custom_settings = {
@@ -26,7 +27,7 @@ class CrawlFx678ArticleSpider(scrapy.Spider):
         self.url_format = 'http://brokers.fx678.com/articlelist/{id}/{page}'
         self.type_index = 0
         self.page_index = 1
-        self.max_page = 10
+        self.max_page = 1
 
         super(CrawlFx678ArticleSpider, self).__init__(*args, **kwargs)
         if kwargs and "max" in kwargs:
@@ -59,16 +60,15 @@ class CrawlFx678ArticleSpider(scrapy.Spider):
 
             href = href if href.startswith('http') else 'http://brokers.fx678.com' + href
 
-            item = {
-                'title': title,
-                'source_url': href,
-                'image': img_path,
-                'description': description,
-                'pub_time': pub_time,
-                'type_id': type_now['id'],
-                'type_name': type_now['name'],
-                'source_id': self.util.get_sourceid(href)
-            }
+            item = ArticleItem()
+            item['title'] = title
+            item['source_url'] = href
+            item['image'] = img_path
+            item['description'] = description
+            item['publish_time'] = pub_time
+            item['type'] = type_now['name']
+            item['source_site'] = 'fx678'
+            item['source_id'] = self.util.get_sourceid(href)
 
             yield item
             self.r.sadd('fx678:page', item['source_url'])
@@ -77,6 +77,7 @@ class CrawlFx678ArticleSpider(scrapy.Spider):
         url = self.get_next()
 
         if url:
+            print url
             yield scrapy.Request(url, meta={'cookiejar': self.name}, callback=self.parse_list)
 
         else:
@@ -88,7 +89,7 @@ class CrawlFx678ArticleSpider(scrapy.Spider):
         body = response.xpath(".//div[@class='xw_l fl']/div[@class='xwl_ico3']/p").extract_first()
         publish_time = response.xpath(".//div[@class='xw_l fl']//div[@class='xwl_text clearfix']//div[@class='fl']/span/text()").extract_first()
 
-        item = {}
+        item = ArticleItem()
 
         item['publish_time'] = publish_time
         item['body'] = self.util.handle_body(body)
