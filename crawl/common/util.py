@@ -14,7 +14,7 @@ from urlparse import urlparse
 import redis
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = 'E:\\Tool\\Python\\Lib\\site-packages\\pytesser\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'tesseract'
 
 class util(object):
     def __init__(self):
