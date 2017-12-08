@@ -4,7 +4,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-import logging, datetime
+import logging, datetime, sys
 from contextlib import contextmanager
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import and_, or_, func
@@ -25,6 +25,8 @@ from crawl.models.crawl_baidu_rate import BaiduRate
 from crawl.models.crawl_cgse import Cgse
 from crawl.common.util import session_scope
 import crawl.items as items
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class OpratePipeline(object):
     def __init__(self):
@@ -77,22 +79,24 @@ class OpratePipeline(object):
     def parse_baidu_rate(self, item):
         with session_scope(self.sess) as session:
             baiduRate = BaiduRate(**item)
-            query = session.query(BaiduRate.id).filter(and_(
-                BaiduRate.ctime.between(datetime.datetime.now().strftime("%Y-%m-%d 00:00:00"), datetime.datetime.now().strftime("%Y-%m-%d 23:59:59")),
-                BaiduRate.site == baiduRate.site
-            )).one_or_none()
+            # query = session.query(BaiduRate.id).filter(and_(
+            #     BaiduRate.ctime.between(datetime.datetime.now().strftime("%Y-%m-%d 00:00:00"), datetime.datetime.now().strftime("%Y-%m-%d 23:59:59")),
+            #     BaiduRate.site == baiduRate.site
+            # )).one_or_none()
 
-            if query:
-                up_item = {}
-                for k in item:
-                    if item[k]:
-                        up_item[k] = item[k]
+            # if query:
+            #     up_item = {}
+            #     for k in item:
+            #         if item[k]:
+            #             up_item[k] = item[k]
+            #
+            #     session.query(BaiduRate).filter(
+            #         BaiduRate.id == query[0]
+            #     ).update(up_item)
+            # else:
 
-                session.query(BaiduRate).filter(
-                    BaiduRate.id == query[0]
-                ).update(up_item)
-            else:
-                session.add(baiduRate)
+            # 不更新，只添加
+            session.add(baiduRate)
 
     def parse_zhanzhang(self, item):
         all_data = [CrawlZhanzhang(**item[it]) for it in item]
