@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import scrapy
+import scrapy, os
 import datetime, json, random, redis, urllib, time
 from crawl.common.util import util, Verify
+from crawl import settings
 
 class CrawlBaiduTongjiSpider(scrapy.Spider):
     name = 'crawl_baidu_tongji'
@@ -73,10 +74,11 @@ class CrawlBaiduTongjiSpider(scrapy.Spider):
 
     def check_verify(self, response):
         verify_img = "verify.jpg"
-        with open(verify_img, "wb") as fs:
+        with open(os.path.join(settings.Tmp_Dir, self.verify_save_name), "wb") as fs:
             fs.write(response.body)
 
-        verify_code = self.verify_tool.parse_verify(verify_img)
+        verify_code = self.verify_tool.parse_verify(self.verify_save_name)
+
         if verify_code and len(verify_code) == 4:
             form_data = {
                 "entered_login": "18513788638",
