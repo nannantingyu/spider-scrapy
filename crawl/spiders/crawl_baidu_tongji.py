@@ -134,6 +134,41 @@ class CrawlBaiduTongjiSpider(scrapy.Spider):
                              meta={'cookiejar': response.meta['cookiejar']}, callback=self.parse_visit)
 
     def parse_visit(self, response):
+        print response.status, response.status == 302
+        with open("body.html", 'w') as fs:
+            fs.write(response.body)
+
+        page_title = response.xpath(".//div[@class='sub-wrapper']//h2[@class='title']/text()").extract_first()
+        if response.status == 302 or (page_title and page_title == '密保验证'.encode('utf-8')):
+            form_dt = {
+                'qid': '100000000',
+                'answer': '18513788638'
+            }
+
+            yield scrapy.FormRequest(url="https://aq.baidu.com/hold/quesverify/verify",
+                                     meta={'cookiejar': self.cookie_name},
+                                     formdata=form_dt,
+                                     callback=self.parse_redirect)
+
+        else:
+            for site_id in self.sites_map:
+                site_page = self.sites_map[site_id]['page_now']
+                offset = str((int(site_page) - 1) * 100)
+
+                form_dt = {}
+                form_dt.update(self.formdata)
+                form_dt['siteId'] = site_id
+                form_dt['offset'] = offset
+
+                yield scrapy.FormRequest(url="https://tongji.baidu.com/web/24229627/ajax/post",
+                                         meta={'cookiejar': self.cookie_name, 'site_id': site_id},
+                                         formdata=form_dt,
+                                         callback=self.parseData)
+    def parse_redirect(self, response):
+        print "verify phone", response.status, response.url
+        yield scrapy.Request('http://tongji.baidu.com', meta={'cookiejar': self.cookie_name}, callback=self.parse_index_page)
+
+    def parse_index_page(self, response):
         for site_id in self.sites_map:
             site_page = self.sites_map[site_id]['page_now']
             offset = str((int(site_page) - 1) * 100)
