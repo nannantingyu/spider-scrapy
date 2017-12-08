@@ -30,7 +30,7 @@ class BaiduRate(Base):
     income = Column(String(12))
     profit = Column(String(12))
     roi = Column(String(12))
-    ctime = Column(String(12))
+    ctime = Column(DateTime)
     site = Column(String(32))
     created_time = Column(DateTime, default=func.now())
     updated_time = Column(DateTime, default=func.now(), onupdate=func.now())
