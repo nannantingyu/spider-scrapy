@@ -23,6 +23,7 @@ class CrawlBaiduTongjiSpider(scrapy.Spider):
         self.verify_url = 'http://cas.baidu.com/?action=image&key={rand}'
         self.page_now = 1
         self.max_page = 51
+        self.verify_save_name = 'verify.jpg'
         self.sites_map = {
             '8918649': {'name': 'm.91pme.com', 'page_now': 1},
             '7802984': {'name': '91pme.com', 'page_now': 1},
