@@ -147,6 +147,23 @@ class CrawlBaiduRateSpider(scrapy.Spider):
                              meta={'cookiejar': response.meta['cookiejar']}, callback=self.parse_visit)
 
     def parse_visit(self, response):
+        page_title = response.xpath(".//div[@class='sub-wrapper']//h2[@class='title']/text()").extract_first()
+        print page_title, page_title == '密保验证'.encode('utf-8')
+        if page_title and page_title == '密保验证'.encode('utf-8'):
+            form_dt = {
+                'qid': '100000000',
+                'answer': '18513788638'
+            }
+
+            yield scrapy.FormRequest(url="https://aq.baidu.com/hold/quesverify/verify",
+                                     meta={'cookiejar': self.cookie_name},
+                                     formdata=form_dt,
+                                     callback=self.parse_index_page)
+
+        else:
+            yield self.parse_index_page(response)
+
+    def parse_index_page(self, response):
         for site_id in self.sites_map:
             form_dt = {}
             form_dt.update(self.formdata)
@@ -165,6 +182,7 @@ class CrawlBaiduRateSpider(scrapy.Spider):
                                      meta={'cookiejar': self.cookie_name, 'site_id': site_id},
                                      formdata=form_dt,
                                      callback=self.parseData)
+        pass
 
     def parseData(self, response):
         data = json.loads(response.body)
