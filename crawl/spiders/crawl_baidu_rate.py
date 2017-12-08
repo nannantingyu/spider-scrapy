@@ -147,6 +147,9 @@ class CrawlBaiduRateSpider(scrapy.Spider):
                              meta={'cookiejar': response.meta['cookiejar']}, callback=self.parse_visit)
 
     def parse_visit(self, response):
+        with open("body.html", 'w') as fs:
+            fs.write(response.body)
+            
         page_title = response.xpath(".//div[@class='sub-wrapper']//h2[@class='title']/text()").extract_first()
         print page_title, page_title == '密保验证'.encode('utf-8')
         if page_title and page_title == '密保验证'.encode('utf-8'):
@@ -161,7 +164,24 @@ class CrawlBaiduRateSpider(scrapy.Spider):
                                      callback=self.parse_index_page)
 
         else:
-            yield self.parse_index_page(response)
+            for site_id in self.sites_map:
+                form_dt = {}
+                form_dt.update(self.formdata)
+                form_dt['siteId'] = site_id
+                form_dt['st'] = form_dt['et'] = str(int(time.time()) * 1000)
+
+                print "site: ", self.sites_map[site_id]['name']
+                for i in range(int(math.ceil(float(len(self.indicators)) / 6))):
+                    start = i * 6
+                    end = start + 6
+                    print i, start, end
+                    form_dt['indicators'] = ",".join(self.indicators[start:end])
+                    print form_dt['indicators']
+
+                    yield scrapy.FormRequest(url="https://tongji.baidu.com/web/24229627/ajax/post",
+                                             meta={'cookiejar': self.cookie_name, 'site_id': site_id},
+                                             formdata=form_dt,
+                                             callback=self.parseData)
 
     def parse_index_page(self, response):
         for site_id in self.sites_map:
