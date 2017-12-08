@@ -366,3 +366,4 @@ class CrawlBaiduRateItem(scrapy.Item):
     roi = scrapy.Field()
     ctime = scrapy.Field()
     site = scrapy.Field()
+    source_id = scrapy.Field()

@@ -18,6 +18,7 @@ class CrawlBaiduRateSpider(scrapy.Spider):
 
     def __init__(self):
         self.all = []
+        self.data_name = 'baidu_rate_%d' % int(time.time())
         self.util = util()
         self.verify_tool = Verify()
         self.verify_save_name = 'verify.jpg'
@@ -224,6 +225,7 @@ class CrawlBaiduRateSpider(scrapy.Spider):
 
         item['ctime'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         item['site'] = self.sites_map[response.request.meta['site_id']]['name']
+        item['source_id'] = self.data_name
 
         yield item
 

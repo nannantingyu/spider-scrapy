@@ -32,5 +32,6 @@ class BaiduRate(Base):
     roi = Column(String(12))
     ctime = Column(DateTime)
     site = Column(String(32))
+    source_id = Column(String(32))
     created_time = Column(DateTime, default=func.now())
     updated_time = Column(DateTime, default=func.now(), onupdate=func.now())
