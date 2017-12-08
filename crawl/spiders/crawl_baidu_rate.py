@@ -147,12 +147,12 @@ class CrawlBaiduRateSpider(scrapy.Spider):
                              meta={'cookiejar': response.meta['cookiejar']}, callback=self.parse_visit)
 
     def parse_visit(self, response):
+	print response.status, response.status == 302
         with open("body.html", 'w') as fs:
             fs.write(response.body)
             
         page_title = response.xpath(".//div[@class='sub-wrapper']//h2[@class='title']/text()").extract_first()
-        print page_title, page_title == '密保验证'.encode('utf-8')
-        if page_title and page_title == '密保验证'.encode('utf-8'):
+        if response.status == 302 or (page_title and page_title == '密保验证'.encode('utf-8')):
             form_dt = {
                 'qid': '100000000',
                 'answer': '18513788638'
