@@ -48,7 +48,13 @@ class CrawlFx678CalendarSpider(scrapy.Spider):
 
             if "start" in params:
                 try:
-                    date_start = datetime.datetime.strptime(params['start'], "%Y-%m-%d")
+                    date_pat = re.compile(r"\d{4}\-\d{2}\-\d{2}")
+                    if len(date_pat.findall(params['start'])) == 0:
+                        timedelta = datetime.timedelta(days=int(params['start']))
+                        date_start = datetime.datetime.now() + timedelta
+                    else:
+                        date_start = datetime.datetime.strptime(params['start'], "%Y-%m-%d")
+
                     self.date_now = date_start
                 except ValueError as error:
                     print params['start'] + ' 不是正确格式的时间，已默认从今天开始抓取'
