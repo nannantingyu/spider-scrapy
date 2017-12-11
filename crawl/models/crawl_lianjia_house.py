@@ -1,0 +1,58 @@
+# -*- encoding: utf-8 -*-
+"""
+定义数据库模型实体 
+"""
+from sqlalchemy import Column, Integer, String, Text, DateTime, func, Index, Date, BIGINT, SmallInteger
+from crawl.models.util import Base
+
+class LianjiaHouse(Base):
+    __tablename__ = 'crawl_lianjia_house'
+
+    id = Column(Integer, primary_key=True)
+    house_id = Column(BIGINT)
+    title = Column(String(256))
+    residential = Column(String(64))
+    layout = Column(String(64))
+    area = Column(String(16))
+    residential_id = Column(BIGINT)
+    direction = Column(String(16))
+    renovation = Column(String(16))
+    elevator = Column(String(16))
+    flood = Column(String(16))
+    related_name = Column(String(64))
+    related_href = Column(String(256))
+    followed = Column(Integer)
+    visited = Column(Integer)
+    pub_time = Column(String(16))
+    tag = Column(String(256))
+    layout_datas = Column(Text)
+    price = Column(Integer)
+    unit_price = Column(Integer)
+    images = Column(Text)
+    img_desc = Column(String(256))
+    district = Column(String(32))
+    apartment_structure = Column(String(32))
+    street = Column(String(256))
+    address = Column(String(256))
+    building_type = Column(String(32))
+    ladder = Column(String(32))
+    heating = Column(String(32))
+    property_term = Column(Integer)
+    list_time = Column(Date)
+    ownership = Column(String(32))
+    last_trade = Column(Date)
+    purpose = Column(String(256))
+    hold_years = Column(String(32))
+    mortgage = Column(String(256))
+    house_register = Column(String(256))
+    core_point = Column(String(512))
+    periphery = Column(String(512))
+    traffic = Column(String(512))
+    residential_desc = Column(String(512))
+    layout_desc = Column(String(512))
+    img_layout = Column(String(256))
+    source_id = Column(String(32))
+    state = Column(SmallInteger)
+    source_url = Column(String(256))
+    created_time = Column(DateTime, default=func.now())
+    updated_time = Column(DateTime, default=func.now(), onupdate=func.now())
