@@ -47,6 +47,7 @@ class CrawlBaiduTongjiSpider(scrapy.Spider):
         for site in self.sites_map:
             sname = self.sites_map[site]['name']
             self.sites_map[site]['time'] = self.lastest_access_time[sname] = self.r.get('baidutongji:%s'%sname)
+            self.lastest_access_time[sname] = self.r.get('baidutongji:%s'%sname)
 
         # 看用既有的cookie能否成功登录
         return [scrapy.Request("https://tongji.baidu.com/web/24229627/trend/latest?siteId=8918649",
