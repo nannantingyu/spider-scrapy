@@ -94,6 +94,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'crawl.middlewares.middlewares.RotateUserAgentMiddleware': 400,
     'crawl.middlewares.middlewares.CookiesSaveingMiddleware': 699,
+    'crawl.middlewares.middlewares.PhantomJSMiddleware': 700,
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,

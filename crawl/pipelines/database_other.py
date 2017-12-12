@@ -5,15 +5,14 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import logging, datetime
-from contextlib import contextmanager
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import and_, or_, func
 from crawl.models.util import db_connect, create_news_table
 from crawl.common.util import session_scope
-import crawl.items as items
+from crawl.models.crawl_weixin_search import Crawl_Weixin_Search
+from crawl.items import CrawlWexinArticleItem
 
 class OtherPipeline(object):
-    """保存文章到数据库"""
 
     def __init__(self):
         engine = db_connect()
@@ -27,7 +26,42 @@ class OtherPipeline(object):
 
     def process_item(self, item, spider):
         """process news item"""
-        pass
+        if spider.name in ['crawl_weixin_search', 'crawl_weixin_detail']:
+            self.parse_weixin_search(item)
+
+    def parse_weixin_search(self, item):
+        with session_scope(self.sess) as session:
+            if isinstance(item, dict) and isinstance(item.items()[0], CrawlWexinArticleItem):
+                all_item = []
+                for i in item:
+                    article = Crawl_Weixin_Search(**item[i])
+                    query = session.query(Crawl_Weixin_Search.id).filter(
+                        Crawl_Weixin_Search.source_id == article.source_id
+                    ).one_or_none()
+
+                    if query is None:
+                        all_item.append(article)
+
+                if all_item:
+                    session.add_all(all_item)
+            else:
+                article = Crawl_Weixin_Search(**item)
+                query = session.query(Crawl_Weixin_Search.id).filter(
+                    Crawl_Weixin_Search.source_id == article.source_id
+                ).one_or_none()
+
+                data = {}
+                if query:
+                    for attr in item:
+                        val = item[attr]
+                        if val is not None:
+                            data[attr] = val
+
+                    data['state'] = 1
+
+                if data:
+                    session.query(Crawl_Weixin_Search).filter(
+                        Crawl_Weixin_Search.id == query[0]).update(data)
 
     def close_spider(self, spider):
         """close spider"""

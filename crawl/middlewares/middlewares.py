@@ -9,10 +9,9 @@ from scrapy import signals
 import random
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 from scrapy.downloadermiddlewares.cookies import CookiesMiddleware
-import logging
-import re
-import os
-import json
+import logging, re, os, json
+from selenium import webdriver
+from scrapy.http import HtmlResponse
 
 logger = logging.getLogger(__name__)
 
@@ -168,3 +167,15 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
             json.dump(file_cookie, fs)
 
         request.cookies = file_cookie
+
+class PhantomJSMiddleware(object):
+    @classmethod
+    def process_request(cls, request, spider):
+
+        if request.meta.has_key('PhantomJS'):
+            driver = webdriver.PhantomJS(service_log_path="logs/spider.log")
+            driver.get(request.url)
+
+            content = driver.page_source.encode('utf-8')
+            driver.quit()
+            return HtmlResponse(request.url, encoding='utf-8', body=content, request=request)

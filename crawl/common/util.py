@@ -1,19 +1,11 @@
 # -*- coding: utf-8 -*-
-import sys
+import hashlib, os, datetime, time, random, logging, re, redis, pytesseract, sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-import hashlib
-import os
-import datetime
 import crawl.settings as setting
-import logging
 from contextlib import contextmanager
-import time
-import re
 from urlparse import urlparse
-import redis
 from PIL import Image
-import pytesseract
 pytesseract.pytesseract.tesseract_cmd = 'E:\\Tool\\Python\\Lib\\site-packages\\pytesser\\tesseract.exe'
 
 class util(object):
@@ -39,6 +31,10 @@ class util(object):
         md5.update(url)
         return md5.hexdigest()
 
+    @classmethod
+    def sleep(cls, sleep_time):
+        sleep_time = sleep_time if sleep_time is not None else random.randint(5, 30)
+        time.sleep(sleep_time)
 
     def downfile(self, full_img_url, img_name=None):
         """
