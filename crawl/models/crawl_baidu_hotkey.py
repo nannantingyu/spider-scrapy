@@ -14,6 +14,7 @@ class Crawl_Baidu_Hotkey(Base):
     keyword = Column(String(64), nullable=True)
     order = Column(SmallInteger)
     state = Column(SmallInteger, default=1)
+    source_id = Column(String(32))
 
     created_time = Column(DateTime, default=func.now())
     updated_time = Column(DateTime, default=func.now(), onupdate=func.now())
