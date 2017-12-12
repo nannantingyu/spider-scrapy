@@ -11,7 +11,8 @@ from crawl.models.util import db_connect, create_news_table
 from crawl.common.util import session_scope
 from crawl.models.crawl_weixin_search import Crawl_Weixin_Search
 from crawl.models.crawl_weibo_hotkey import Crawl_Weibo_Hotkey
-from crawl.items import CrawlWexinArticleItem, CrawlHotkey
+from crawl.models.crawl_baidu_hotkey import Crawl_Baidu_Hotkey
+from crawl.items import CrawlWexinArticleItem
 
 class OtherPipeline(object):
 
@@ -31,6 +32,8 @@ class OtherPipeline(object):
             self.parse_weixin_search(item)
         elif spider.name in ['crawl_weibo_search']:
             self.parse_weibo_seach(item)
+        elif spider.name in ['crawl_baidu_search']:
+            self.parse_baidu_seach(item)
 
     def parse_weixin_search(self, item):
         with session_scope(self.sess) as session:
@@ -71,6 +74,16 @@ class OtherPipeline(object):
             hotkey = Crawl_Weibo_Hotkey(**item)
             query = session.query(Crawl_Weibo_Hotkey.id).filter(
                 Crawl_Weibo_Hotkey.source_id == hotkey.source_id
+            ).one_or_none()
+
+            if query is None:
+                session.add(hotkey)
+
+    def parse_baidu_seach(self, item):
+        with session_scope(self.sess) as session:
+            hotkey = Crawl_Baidu_Hotkey(**item)
+            query = session.query(Crawl_Baidu_Hotkey.id).filter(
+                Crawl_Baidu_Hotkey.source_id == hotkey.source_id
             ).one_or_none()
 
             if query is None:

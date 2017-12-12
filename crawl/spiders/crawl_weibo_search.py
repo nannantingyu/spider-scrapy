@@ -22,7 +22,7 @@ class CrawlWeiboSearchSpider(scrapy.Spider):
                                meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403], 'PhantomJS': True}, callback=self.parse_content)]
 
     def parse_content(self, response):
-	tds = response.xpath(".//table[@id='realtimehot']//tr//td[@class='td_02']//p[@class='star_name']/a/@href").extract()
+        tds = response.xpath(".//table[@id='realtimehot']//tr//td[@class='td_02']//p[@class='star_name']/a/@href").extract()
         key_pat = re.compile(r"weibo\/(.*)\&")
         for index,td in enumerate(tds):
             keywords = td.strip() if td is not None else None
@@ -32,7 +32,7 @@ class CrawlWeiboSearchSpider(scrapy.Spider):
                 keywords = str(keywords[0]) if len(keywords) > 0 else None
 
                 if keywords is not None:
-		    keywords = urllib.unquote(urllib.unquote(keywords)).decode("utf-8")
+                    keywords = urllib.unquote(urllib.unquote(keywords)).decode("utf-8")
                     self.r.sadd("weixin_hot_keywords", keywords)
                     self.r.sadd("weibo_hot_keywords", keywords)
 

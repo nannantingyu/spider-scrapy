@@ -5,7 +5,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, func, Index, SmallInteger
 from crawl.models.util import Base
 
-class Crawl_Weibo_Hotkey(Base):
+class Crawl_Baidu_Hotkey(Base):
     """微信新闻类"""
     __tablename__ = 'crawl_baidu_hotkey'
 
