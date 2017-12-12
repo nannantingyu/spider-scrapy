@@ -32,7 +32,7 @@ class util(object):
         return md5.hexdigest()
 
     @classmethod
-    def sleep(cls, sleep_time):
+    def sleep(cls, sleep_time=None):
         sleep_time = sleep_time if sleep_time is not None else random.randint(5, 30)
         time.sleep(sleep_time)
 

@@ -37,7 +37,7 @@ class OtherPipeline(object):
 
     def parse_weixin_search(self, item):
         with session_scope(self.sess) as session:
-            if isinstance(item, dict) and isinstance(item.items()[0], CrawlWexinArticleItem):
+            if isinstance(item, dict) and isinstance(item.items()[0][1], CrawlWexinArticleItem):
                 all_item = []
                 for i in item:
                     article = Crawl_Weixin_Search(**item[i])

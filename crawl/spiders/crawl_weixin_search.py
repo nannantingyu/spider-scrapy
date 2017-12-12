@@ -22,7 +22,10 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         self.page_url = "http://weixin.sogou.com/weixin?usip=&query={query}&ft=&tsn=1&et=&interation=&type=2&wxid=&page={page}&ie=utf8"
         self.type_index = 0
         self.type = [ {'name': '五常大米', 'page_now': 1, 'page_all': 2} ]
+        self.type_now = self.type[0]
         self.only_hot = False
+        self.typename = self.type_now['name']
+        self.referer = "http://weixin.sogou.com/weixin?type=2&s_from=input&query={query}&ie=utf8&_sug_=y&_sug_type_=&w=01019900&sut=10939&sst0=1513059180510&lkt=6%2C1513059170545%2C1513059180409"
 
         if 'args' in kwargs:
             params = {x[0]: x[1] for x in [[l for l in m.split(":")] for m in kwargs['args'].split(",")]}
@@ -33,6 +36,11 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
     def start_requests(self):
         # 种cookie
+        return [scrapy.Request('http://weixin.sogou.com/',
+                               meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403]},
+                               callback=self.parse_profile)]
+
+    def parse_profile(self, response):
         return [scrapy.Request('http://weixin.sogou.com/websearch/wexinurlenc_sogou_profile.jsp',
                                meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403]},
                                callback=self.parse_cookie)]
@@ -42,54 +50,61 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
             'http://weixin.sogou.com/weixin?type=2&query={query}&ie=utf8&s_from=input&_sug_=n&_sug_type_=&w=01015002&oq=&ri=0&sourceid=sugg&sut=375&sst0=1502699460309&lkt=1%2C1502699460207%2C1502699460207'.format(
                 query=urllib.quote(self.type[self.type_index]['name'])),
             meta={'cookiejar': self.name, 'dont_redirect': True, 'handle_httpstatus_list': [301, 302, 403]},
+            headers=self.get_header(),
             callback=self.parse_referer)
 
     def parse_referer(self, response):
         url = self.get_next_page()
+
         if url:
             yield scrapy.Request(url, meta={'cookiejar': self.name, 'dont_redirect': True,
                                    'handle_httpstatus_list': [301, 302, 400]},
+                                 headers=self.get_header(),
                              callback=self.parse)
+
+    def get_header(self):
+        return {"Referer": self.referer.format(query=urllib.quote(self.typename))}
 
     def get_next_page(self):
         ret = None
 
         if self.type_index < len(self.type) and not self.only_hot:
-            type_now = self.type[self.type_index]
-            self.type[self.type_index]['page_now'] += 1
-            if type_now['page_now'] > type_now['page_all']:
+            self.type_now = self.type[self.type_index]
+            if self.type_now['page_now'] > self.type_now['page_all']:
                 self.type_index += 1
 
                 return self.get_next_page()
 
             if self.type_index < len(self.type):
-                ret = self.page_url.format(query=urllib.quote(type_now['name']),
-                                           page=type_now['page_now'])
-                self.typename = type_now['name']
+                ret = self.page_url.format(query=urllib.quote(self.type_now['name']),
+                                           page=self.type_now['page_now'])
+                self.type_now['page_now'] += 1
+                self.typename = self.type_now['name']
         else:
             # 从redis读取热门搜索词
             keywords = self.r.spop("weixin_hot_keywords")
             if keywords:
                 ret = self.page_url.format(query=urllib.quote(keywords), page=1)
                 self.typename = keywords
+                self.only_hot = True
 
-	print ret
         return ret
 
     def parse(self, response):
-	print response.status
-	with open("weixin.html", "w") as fs:
-	    fs.write(response.body)
+        print response.url, response.request.headers, response.request.cookies
+        # with open(self.typename.decode('utf-8').encode('gbk') + ".html", "w") as fs:
+        #     fs.write(response.body)
+
         if response.status != 400:
             lis = response.xpath("//ul[@class='news-list']/li")
             all_items = {}
 
             page_all = response.xpath("//div[@id='pagebar_container']/a/text()").extract()
-            if not self.only_hot and self.type[self.type_index]['page_all'] == 0:
+            if not self.only_hot and self.type_now['page_all'] == 0:
                 if len(page_all) > 1:
                     page_all = int(page_all[-2]) if str(page_all[-2]).isdigit() else 1
-                    if self.type[self.type_index]['page_all'] > page_all:
-                        self.type[self.type_index]['page_all'] = page_all
+                    if self.type_now['page_all'] > page_all:
+                        self.type_now['page_all'] = page_all
 
             for item_index, li in enumerate(lis):
                 img = li.xpath(".//div[@class='img-box']/a/img/@src").extract()
@@ -98,8 +113,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 if not source_url.startswith("http"):
                     continue
 
-		source_url = str(source_url)
-                print source_url
+                source_url = str(source_url)
                 title = BeautifulSoup(li.xpath(".//div[@class='txt-box']/h3/a").extract_first(), 'lxml')
                 title = title.find('a').getText()
                 description = li.xpath(".//div[@class='txt-box']/p[@class='txt-info']").extract_first()
@@ -125,7 +139,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                 item = CrawlWexinArticleItem()
                 item['title'] = title
-                item['source_url'] = str(source_url)
+                item['source_url'] = source_url
                 item['source_id'] = source_id
                 item['description'] = description
                 item['image'] = img
@@ -133,23 +147,22 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 item['type'] = self.typename
                 item['publish_time'] = publish_time
 
-		print source_id
                 if not self.r.sismember("crawl_source_id", source_id):
                     self.r.sadd("crawl_source_id", source_id)
-		    print "{url}&source_id={source_id}".format(url=source_url, source_id=source_id)
                     self.r.sadd("weixin_url", "{url}&source_id={source_id}".format(url=source_url, source_id=source_id))
 
                     all_items[item_index] = item
 		
-		if self.only_hot:
-		    break
+                    if self.only_hot:
+                        break
 
-	    print all_items
-	    if len(all_items) > 0:
-	            yield all_items
+            if len(all_items) > 0:
+                yield all_items
 
+        util.sleep()
         next_url = self.get_next_page()
         if next_url:
             yield scrapy.Request(next_url, meta={'cookiejar': self.name, 'dont_redirect': True,
                                        'handle_httpstatus_list': [301, 302, 400]},
+                                 headers=self.get_header(),
                                  callback=self.parse)
