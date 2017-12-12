@@ -382,3 +382,9 @@ class CrawlWexinArticleItem(scrapy.Item):
     state = scrapy.Field()
     hits = scrapy.Field()
     description = scrapy.Field()
+
+class CrawlHotkey(scrapy.Item):
+    time = scrapy.Field()
+    keyword = scrapy.Field()
+    order = scrapy.Field()
+    source_id = scrapy.Field()

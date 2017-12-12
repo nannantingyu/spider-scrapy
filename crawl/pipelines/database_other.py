@@ -10,7 +10,8 @@ from sqlalchemy import and_, or_, func
 from crawl.models.util import db_connect, create_news_table
 from crawl.common.util import session_scope
 from crawl.models.crawl_weixin_search import Crawl_Weixin_Search
-from crawl.items import CrawlWexinArticleItem
+from crawl.models.crawl_weibo_hotkey import Crawl_Weibo_Hotkey
+from crawl.items import CrawlWexinArticleItem, CrawlHotkey
 
 class OtherPipeline(object):
 
@@ -28,6 +29,8 @@ class OtherPipeline(object):
         """process news item"""
         if spider.name in ['crawl_weixin_search', 'crawl_weixin_detail']:
             self.parse_weixin_search(item)
+        elif spider.name in ['crawl_weibo_search']:
+            self.parse_weibo_seach(item)
 
     def parse_weixin_search(self, item):
         with session_scope(self.sess) as session:
@@ -62,6 +65,18 @@ class OtherPipeline(object):
                 if data:
                     session.query(Crawl_Weixin_Search).filter(
                         Crawl_Weixin_Search.id == query[0]).update(data)
+
+    def parse_weibo_seach(self, item):
+        with session_scope(self.sess) as session:
+            hotkey = Crawl_Weibo_Hotkey(**item)
+            query = session.query(Crawl_Weibo_Hotkey.id).filter(
+                Crawl_Weibo_Hotkey.source_id == hotkey.source_id
+            ).one_or_none()
+
+            if query is None:
+                session.add(hotkey)
+
+
 
     def close_spider(self, spider):
         """close spider"""
