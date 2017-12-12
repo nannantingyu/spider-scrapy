@@ -73,9 +73,13 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 ret = self.page_url.format(query=urllib.quote(keywords), page=1)
                 self.typename = keywords
 
+	print ret
         return ret
 
     def parse(self, response):
+	print response.status
+	with open("weixin.html", "w") as fs:
+	    fs.write(response.body)
         if response.status != 400:
             lis = response.xpath("//ul[@class='news-list']/li")
             all_items = {}
@@ -94,6 +98,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 if not source_url.startswith("http"):
                     continue
 
+		source_url = str(source_url)
                 print source_url
                 title = BeautifulSoup(li.xpath(".//div[@class='txt-box']/h3/a").extract_first(), 'lxml')
                 title = title.find('a').getText()
@@ -128,13 +133,20 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 item['type'] = self.typename
                 item['publish_time'] = publish_time
 
+		print source_id
                 if not self.r.sismember("crawl_source_id", source_id):
                     self.r.sadd("crawl_source_id", source_id)
+		    print "{url}&source_id={source_id}".format(url=source_url, source_id=source_id)
                     self.r.sadd("weixin_url", "{url}&source_id={source_id}".format(url=source_url, source_id=source_id))
 
                     all_items[item_index] = item
+		
+		if self.only_hot:
+		    break
 
-            yield all_items
+	    print all_items
+	    if len(all_items) > 0:
+	            yield all_items
 
         next_url = self.get_next_page()
         if next_url:

@@ -18,7 +18,6 @@ class CrawlBaiduSearchSpider(scrapy.Spider):
             data = tr.xpath("./td[@class='keyword']/a[1]/text()").extract_first()
 
             if data:
-                print data
                 item = CrawlHotkey()
                 item['time'] = datetime.datetime.now()
                 item['keyword'] = data
