@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 import os, sys
 import optparse
+import logging
+import datetime
+
+logging.basicConfig(level=logging.DEBUG,
+                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                datefmt='%a, %d %b %Y %H:%M:%S',
+                filename='logs/cmd_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d')),
+                filemode='w')
 
 def parse_options():
     parser = optparse.OptionParser(

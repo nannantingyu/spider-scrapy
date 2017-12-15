@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 from crawl.Common.Util import util
 from crawl.items import CrawlWexinArticleItem
-import redis, json, urllib, datetime, scrapy, time
+import redis, json, urllib, datetime, scrapy, time, re
 from crawl.settings import REDIS
 
 from scrapy.http.cookies import CookieJar
@@ -126,7 +126,10 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                 imgs = []
                 for _img in img:
-                    _img_name = self.util.downfile(_img)
+                    name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz\/(.*?)\/")
+                    inames = name_r.findall(_img)
+                    iname = inames[0] if len(inames) > 0 else None
+                    _img_name = self.util.downfile(_img, img_name=iname, need_down=True)
                     imgs.append(_img_name)
 
                 time.localtime()

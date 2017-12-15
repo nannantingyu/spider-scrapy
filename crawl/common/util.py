@@ -36,7 +36,7 @@ class util(object):
         sleep_time = sleep_time if sleep_time is not None else random.randint(1, 5)
         time.sleep(sleep_time)
 
-    def downfile(self, full_img_url, img_name=None):
+    def downfile(self, full_img_url, img_name=None, need_down=False):
         """
         将要下载的文件放到redis列表中，可以进行分布式下载
         :param full_img_url: 要下载的文件的url地址
@@ -51,7 +51,9 @@ class util(object):
         img_path = os.path.join(setting.IMAGES_STORE, img_urlpath)
 
         full_img_path = os.path.join(img_path, img_name).replace("\\", "/")
-        self.r.sadd("downfile_queue", "%s_____%s" %(full_img_url, full_img_path))
+
+        down_topic = "downfile_queue_ex" if need_down else "downfile_queue"
+        self.r.sadd(down_topic, "%s_____%s" %(full_img_url, full_img_path))
 
         return os.path.join(setting.URL_PREFIX, img_urlpath, img_name).replace("\\", "/")
 

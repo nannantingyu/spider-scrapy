@@ -16,13 +16,13 @@ class CmdWeixinKeywords:
         create_news_table(engine)
         self.sess = sessionmaker(bind=engine)
         self.util = RobitUtil()
-        self.words = "侯耀华参演电视剧《编辑部的故事》，他扮演的编辑余德利"
 
     def start(self):
         self.readbody()
         self.readinfo()
 
     def readbody(self):
+        logging.info("This is test log")
         with session_scope(self.sess) as session:
             while True:
                 query = session.query(CrawlWeixinArticleDetail.id, CrawlWeixinArticleDetail.body).filter(
