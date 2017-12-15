@@ -52,7 +52,7 @@ class CmdWeixinKeywords:
                         model = Crawl_keywords_map()
                         model.s_id = id
                         model.keyword = word
-                        model.tb = CrawlWeixinArticleDetail.__tablename__
+                        model.tb = Crawl_Weixin_Search.__tablename__
 
                         all_keywords_map.append(model)
 
