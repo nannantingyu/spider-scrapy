@@ -27,7 +27,7 @@ class CmdWeixinKeywords:
             while True:
                 query = session.query(CrawlWeixinArticleDetail.id, CrawlWeixinArticleDetail.body).filter(
                     CrawlWeixinArticleDetail.key_state == 0
-                ).limit(200)
+                ).limit(200).all()
 
                 if len(query) == 0:
                     break
@@ -67,7 +67,7 @@ class CmdWeixinKeywords:
             while True:
                 query = session.query(Crawl_Weixin_Search.id, Crawl_Weixin_Search.title).filter(
                     Crawl_Weixin_Search.key_state == 0
-                ).limit(200)
+                ).limit(200).all()
 
                 if len(query) == 0:
                     break
