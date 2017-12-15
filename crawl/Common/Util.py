@@ -6,7 +6,7 @@ import crawl.settings as setting
 from contextlib import contextmanager
 from urlparse import urlparse
 from PIL import Image
-pytesseract.pytesseract.tesseract_cmd = 'E:\\Tool\\Python\\Lib\\site-packages\\pytesser\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'tesseract.exe'
 
 class util(object):
     def __init__(self):

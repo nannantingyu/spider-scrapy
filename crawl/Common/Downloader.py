@@ -5,7 +5,7 @@ r = redis.Redis(host='127.0.0.1')
 
 def next_file():
     global r
-    fileinfo = r.spop('downfile_queue')
+    fileinfo = r.spop('downfile_queue_ex')
     if fileinfo is not None:
         return fileinfo
 

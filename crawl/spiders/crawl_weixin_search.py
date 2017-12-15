@@ -126,9 +126,10 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                 imgs = []
                 for _img in img:
-                    name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz\/(.*?)\/")
+                    name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz_?(.*)\/(.*?)\/")
                     inames = name_r.findall(_img)
-                    iname = inames[0] if len(inames) > 0 else None
+		    img_sufix = ".jpg" if len(inames) == 0 or not inames[0][0] else inames[0][0]
+                    iname = "%s.%s"%(inames[0][1], inames[0][0]) if len(inames) > 0 else None
                     _img_name = self.util.downfile(_img, img_name=iname, need_down=True)
                     imgs.append(_img_name)
 
