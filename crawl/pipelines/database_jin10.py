@@ -15,7 +15,7 @@ from crawl.models.crawl_economic_jiedu import CrawlEconomicJiedu
 from crawl.models.crawl_article import CrawlArticle
 from crawl.models.crawl_ssi_trend import CrawlSsiTrend
 from crawl.models.crawl_ssi_trend_tb import *
-from crawl.common.util import session_scope
+from crawl.Common.Util import session_scope
 
 import crawl.items as items
 import datetime

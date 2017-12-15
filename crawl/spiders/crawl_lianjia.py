@@ -5,7 +5,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import datetime, redis, re, json
 import crawl.settings as settings
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import LianjiaHouseItem
 
 class CrawlLianjiaSpider(scrapy.Spider):

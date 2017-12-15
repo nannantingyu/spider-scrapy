@@ -5,7 +5,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import crawl.settings as settings
-from crawl.common.util import util
+from crawl.Common.Util import util
 from bs4 import BeautifulSoup
 from crawl.items import LianjiaHouseItem
 

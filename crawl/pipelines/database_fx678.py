@@ -5,7 +5,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import logging
-from crawl.common.util import session_scope
+from crawl.Common.Util import session_scope
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import and_, or_, func
 from crawl.models.util import db_connect, create_news_table

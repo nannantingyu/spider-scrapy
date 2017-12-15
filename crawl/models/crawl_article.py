@@ -17,6 +17,7 @@ class CrawlArticle(Base):
     image = Column(String(512))
     type = Column(String(32))
     keywords = Column(String(128))
+    author = Column(String(25))
     source_id = Column(String(64))
     source_url = Column(String(512))
     source_site = Column(String(32))

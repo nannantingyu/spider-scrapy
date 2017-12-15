@@ -3,7 +3,7 @@ import scrapy, redis
 from crawl.settings import REDIS, Tmp_Dir
 import sys, datetime, re, urllib
 from crawl.items import CrawlHotkey
-from crawl.common.util import util
+from crawl.Common.Util import util
 reload(sys)
 sys.setdefaultencoding('utf-8')
 

@@ -14,7 +14,7 @@ from crawl.models.crawl_lianjia_feedback import LianjiaFeedback
 from crawl.models.crawl_lianjia_residential import LianjiaResidential
 from crawl.models.crawl_lianjia_visited import LianjiaVisited
 from crawl.items import LianjiaResidentialItem
-from crawl.common.util import session_scope
+from crawl.Common.Util import session_scope
 import logging
 
 class DatabasePipeline(object):

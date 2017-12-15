@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy, datetime, redis
 from crawl.items import CrawlHotkey
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.settings import REDIS
 
 class CrawlBaiduSearchSpider(scrapy.Spider):
@@ -22,6 +22,7 @@ class CrawlBaiduSearchSpider(scrapy.Spider):
             data = tr.xpath("./td[@class='keyword']/a[1]/text()").extract_first()
 
             if data:
+                print data.decode('utf-8').encode('gbk')
                 self.r.sadd("weixin_hot_keywords", data)
                 self.r.sadd("weibo_hot_keywords", data)
 

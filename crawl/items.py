@@ -370,18 +370,23 @@ class CrawlBaiduRateItem(scrapy.Item):
 
 class CrawlWexinArticleItem(scrapy.Item):
     title = scrapy.Field()
-    body = scrapy.Field()
     source_url = scrapy.Field()
     source_id = scrapy.Field()
     type = scrapy.Field()
     publish_time = scrapy.Field()
-    from_user = scrapy.Field()
+    author = scrapy.Field()
     favor = scrapy.Field()
     disfavor = scrapy.Field()
     image = scrapy.Field()
     state = scrapy.Field()
     hits = scrapy.Field()
+    keywords = scrapy.Field()
     description = scrapy.Field()
+
+class CrawlArticleDetailItem(scrapy.Item):
+    source_id = scrapy.Field()
+    body = scrapy.Field()
+    keywords = scrapy.Field()
 
 class CrawlHotkey(scrapy.Item):
     time = scrapy.Field()

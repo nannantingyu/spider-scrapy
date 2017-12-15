@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy, os
 import datetime, json, random, redis, urllib, time
-from crawl.common.util import util, Verify
+from crawl.Common.Util import util, Verify
 from crawl import settings
 
 class CrawlBaiduTongjiSpider(scrapy.Spider):

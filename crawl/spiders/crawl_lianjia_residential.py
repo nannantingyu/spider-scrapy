@@ -4,7 +4,7 @@ import datetime, redis, json
 from crawl.settings import REDIS
 import logging
 from crawl.items import LianjiaResidentialItem, LianjiaAgentItem
-from crawl.common.util import util
+from crawl.Common.Util import util
 
 class CrawlLianjiaResidentialSpider(scrapy.Spider):
     name = 'crawl_lianjia_residential'

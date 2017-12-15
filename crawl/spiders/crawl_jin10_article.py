@@ -2,7 +2,7 @@
 import scrapy
 import redis, random, json, datetime, os, time, re
 from crawl.items import ArticleItem
-from crawl.common.util import util
+from crawl.Common.Util import util
 
 class CrawlJin10ArticleSpider(scrapy.Spider):
     name = 'crawl_jin10_article'

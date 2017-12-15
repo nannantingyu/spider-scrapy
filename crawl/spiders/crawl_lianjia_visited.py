@@ -2,7 +2,7 @@
 import scrapy
 import datetime, redis, json, time
 from crawl import settings
-from crawl.common.util import util
+from crawl.Common.Util import util
 
 class CrawlLianjiaVisitedSpider(scrapy.Spider):
     name = 'crawl_lianjia_visited'

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import CrawlCgseItem
 
 class CrawlCgseSpider(scrapy.Spider):

@@ -137,7 +137,6 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
         if request.meta.get('dont_merge_cookies', False):
             return
 
-        cookie_formater = "cookies/cookie_{key}.pkl"
         cookies = {}
 
         cookiejarkey = request.meta.get("cookiejar")
@@ -152,9 +151,33 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
         for c in request.cookies:
             cookies[c] = request.cookies[c]
 
+        request.cookies = self.save_cookie(cookiejarkey, cookies)
+
+    def process_response(self, request, response, spider):
+        cookiejarkey = request.meta.get("cookiejar")
+
+        cookie_re = re.compile(r"Set\-Cookie': \[(.*?)\]")
+        cookies = cookie_re.findall(str(response.headers))
+
+        response_cookie = {}
+        if len(cookies) > 0:
+            cookies = cookies[0][1:-1]
+
+            cookies = cookies.split("', '")
+
+            for cookie in cookies:
+                kv = cookie.split(";")[0].split('=')
+                response_cookie[kv[0]] = kv[1]
+
+        self.save_cookie(cookiejarkey, response_cookie)
+        return response
+
+    def save_cookie(self, cookiejarkey, cookies):
+        cookie_formater = "cookies/cookie_{key}.pkl"
         file_cookie = {}
-        if os.path.exists(cookie_formater.format(key=cookiejarkey)):
-            with open(cookie_formater.format(key=cookiejarkey), 'r') as fs:
+        cookie_file = cookie_formater.format(key=cookiejarkey)
+        if os.path.exists(cookie_file):
+            with open(cookie_file, 'r') as fs:
                 file_cookie = json.load(fs)
 
         if len(file_cookie) > 0:
@@ -162,11 +185,10 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
         else:
             file_cookie = cookies
 
-
         with open(cookie_formater.format(key=cookiejarkey), 'wb') as fs:
             json.dump(file_cookie, fs)
 
-        request.cookies = file_cookie
+        return file_cookie
 
 class PhantomJSMiddleware(object):
     @classmethod

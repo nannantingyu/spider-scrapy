@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime, redis
-from crawl.items import CrawlWexinArticleItem
-from crawl.common.util import util
-from crawl.common.weixin_util import weixin_body_parser
+from crawl.items import CrawlArticleDetailItem
+from crawl.Common.Util import util
+from crawl.Common.Weixin_util import weixin_body_parser
 
 class CrawlWeixinDetailSpider(scrapy.Spider):
     name = 'crawl_weixin_detail'
@@ -33,13 +33,13 @@ class CrawlWeixinDetailSpider(scrapy.Spider):
     def parse_detail(self, response):
         self.item_index += 1
         body = response.xpath(".//div[@id='js_content']").extract_first()
-        item = CrawlWexinArticleItem()
+        item = CrawlArticleDetailItem()
         item['body'] = weixin_body_parser.parse(body) if body else body
 
-        try:
-            print item['body']
-        except Exception, e:
-            print e
+        # try:
+        #     print item['body']
+        # except Exception, e:
+        #     print e
 
         url_param = self.util.get_url_param(response.url)
         source_id = url_param['source_id']
@@ -49,7 +49,6 @@ class CrawlWeixinDetailSpider(scrapy.Spider):
             yield item
 
         detail_url = self.get_next_url()
-        print detail_url
         if detail_url is not None:
             yield scrapy.Request(detail_url,
                                  meta={'cookiejar': self.name, 'dont_redirect': True,

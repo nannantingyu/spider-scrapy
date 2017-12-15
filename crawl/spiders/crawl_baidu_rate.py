@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime, json, random, redis, urllib, time, math, os, json
-from crawl.common.util import util, Verify
+from crawl.Common.Util import util, Verify
 from crawl.items import CrawlBaiduRateItem
 import crawl.settings as settings
 

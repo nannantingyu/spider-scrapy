@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime, redis, json
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import CrawlEconomicJieduItem
 
 class CrawlJin10CalendarJieduSpider(scrapy.Spider):

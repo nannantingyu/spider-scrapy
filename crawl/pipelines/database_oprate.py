@@ -23,7 +23,7 @@ from crawl.models.crawl_zhanzhang import CrawlZhanzhang
 from crawl.models.crawl_ibrebates import Ibrebates
 from crawl.models.crawl_baidu_rate import BaiduRate
 from crawl.models.crawl_cgse import Cgse
-from crawl.common.util import session_scope
+from crawl.Common.Util import session_scope
 import crawl.items as items
 reload(sys)
 sys.setdefaultencoding('utf-8')

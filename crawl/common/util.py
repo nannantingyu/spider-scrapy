@@ -33,7 +33,7 @@ class util(object):
 
     @classmethod
     def sleep(cls, sleep_time=None):
-        sleep_time = sleep_time if sleep_time is not None else random.randint(5, 30)
+        sleep_time = sleep_time if sleep_time is not None else random.randint(1, 5)
         time.sleep(sleep_time)
 
     def downfile(self, full_img_url, img_name=None):

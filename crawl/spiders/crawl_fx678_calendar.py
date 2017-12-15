@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime, re, redis
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import CrawlFx678EconomicCalendarItem, CrawlEconomicEventItem, CrawlEconomicHolidayItem
 
 class CrawlFx678CalendarSpider(scrapy.Spider):

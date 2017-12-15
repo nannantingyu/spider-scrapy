@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import CrawlWexinArticleItem
 import redis, json, urllib, datetime, scrapy, time
 from crawl.settings import REDIS
+
+from scrapy.http.cookies import CookieJar
 
 class CrawlWeixinSearchSpider(scrapy.Spider):
     name = "crawl_weixin_search"
@@ -25,7 +27,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         self.type_now = self.type[0]
         self.only_hot = False
         self.typename = self.type_now['name']
-        self.referer = "http://weixin.sogou.com/weixin?type=2&s_from=input&query={query}&ie=utf8&_sug_=y&_sug_type_=&w=01019900&sut=10939&sst0=1513059180510&lkt=6%2C1513059170545%2C1513059180409"
+        self.referer = "http://weixin.sogou.com/weixin?type=2&s_from=input&query={query}&ie=utf8&_sug_=y&_sug_type_=&w=01019900&sut=10939&sst0={time}&lkt=6%2C1513059170545%2C1513059180409"
 
         if 'args' in kwargs:
             params = {x[0]: x[1] for x in [[l for l in m.split(":")] for m in kwargs['args'].split(",")]}
@@ -37,12 +39,12 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
     def start_requests(self):
         # 种cookie
         return [scrapy.Request('http://weixin.sogou.com/',
-                               meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403]},
+                               meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
                                callback=self.parse_profile)]
 
     def parse_profile(self, response):
         return [scrapy.Request('http://weixin.sogou.com/websearch/wexinurlenc_sogou_profile.jsp',
-                               meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403]},
+                               meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
                                callback=self.parse_cookie)]
 
     def parse_cookie(self, response):
@@ -63,7 +65,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                              callback=self.parse)
 
     def get_header(self):
-        return {"Referer": self.referer.format(query=urllib.quote(self.typename))}
+        return {"Referer": self.referer.format(query=urllib.quote(self.typename), time=str(int(time.time()*1000)))}
 
     def get_next_page(self):
         ret = None
@@ -91,7 +93,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         return ret
 
     def parse(self, response):
-        print response.url, response.request.headers, response.request.cookies
+        print response.url, response.status, response.request.headers
         # with open(self.typename.decode('utf-8').encode('gbk') + ".html", "w") as fs:
         #     fs.write(response.body)
 
@@ -143,7 +145,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 item['source_id'] = source_id
                 item['description'] = description
                 item['image'] = img
-                item['from_user'] = from_user
+                item['author'] = from_user
                 item['type'] = self.typename
                 item['publish_time'] = publish_time
 
@@ -153,8 +155,8 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                     all_items[item_index] = item
 		
-                    if self.only_hot:
-                        break
+                    # if self.only_hot:
+                    #     break
 
             if len(all_items) > 0:
                 yield all_items

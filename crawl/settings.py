@@ -16,8 +16,9 @@ from dotenv import load_dotenv
 
 APP_DIR = dirname(dirname(__file__))
 load_dotenv(join(APP_DIR, '.env'))
-
 BOT_NAME = 'crawl'
+
+DATA_DIR = join(APP_DIR, BOT_NAME, "data")
 
 SPIDER_MODULES = ['crawl.spiders']
 NEWSPIDER_MODULE = 'crawl.spiders'

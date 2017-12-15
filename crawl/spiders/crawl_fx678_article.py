@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import redis, datetime, time, re
-from crawl.common.util import util
+from crawl.Common.Util import util
 from crawl.items import ArticleItem
 
 class CrawlFx678ArticleSpider(scrapy.Spider):
