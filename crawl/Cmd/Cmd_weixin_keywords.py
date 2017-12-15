@@ -5,6 +5,7 @@ sys.setdefaultencoding('utf-8')
 from crawl.Common.Util import session_scope
 from crawl.Common.RobitUtil import RobitUtil
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import and_, or_, func
 from crawl.models.util import db_connect, create_news_table
 from crawl.models.crawl_weixin_article_detail import CrawlWeixinArticleDetail
 from crawl.models.crawl_weixin_search import Crawl_Weixin_Search
@@ -98,7 +99,15 @@ class CmdWeixinKeywords:
                             model.keyword = word
                             model.tb = Crawl_Weixin_Search.__tablename__
 
-                            all_keywords_map.append(model)
+                            qu = session.query(Crawl_keywords_map).filter(
+                                and_(
+                                    Crawl_keywords_map.s_id == id,
+                                    Crawl_keywords_map.keyword == word
+                                )
+                            ).one_or_none()
+
+                            if not qu:
+                                all_keywords_map.append(model)
 
                     session.add_all(all_keywords_map)
 
