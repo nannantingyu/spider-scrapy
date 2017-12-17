@@ -159,6 +159,7 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
         cookie_re = re.compile(r"Set\-Cookie': \[(.*?)\]")
         cookies = cookie_re.findall(str(response.headers))
 
+	logger.info("[crawl status] %s_%s" % (response.url, response.status))
         response_cookie = {}
         if len(cookies) > 0:
             cookies = cookies[0][1:-1]

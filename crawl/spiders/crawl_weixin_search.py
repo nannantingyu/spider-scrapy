@@ -40,12 +40,18 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         # 种cookie
         return [scrapy.Request('http://weixin.sogou.com/',
                                meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
-                               callback=self.parse_profile)]
+                               callback=self.parse_suv)]
+    def parse_suv(self, response):
+	timestr = str(int(time.time())*1000)
+	print timestr
+	yield scrapy.Request("https://pb.sogou.com/pv.gif?uigs_t={timestr}&uigs_productid=vs_web&terminal=web&vstype=weixin&pagetype=index&channel=index_pc&type=weixin_search_pc&wuid=&snuid=&uigs_uuid={timestr}&login=0&uigs_refer=".format(timestr=timestr), meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403, 404, 200]}, callback=self.parse_profile)
 
     def parse_profile(self, response):
-        return [scrapy.Request('http://weixin.sogou.com/websearch/wexinurlenc_sogou_profile.jsp',
+	print response.status
+	print response.headers
+        yield scrapy.Request('http://weixin.sogou.com/websearch/wexinurlenc_sogou_profile.jsp',
                                meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
-                               callback=self.parse_cookie)]
+                               callback=self.parse_cookie)
 
     def parse_cookie(self, response):
         yield scrapy.Request(
