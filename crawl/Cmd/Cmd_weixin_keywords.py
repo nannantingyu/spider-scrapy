@@ -35,7 +35,7 @@ class CmdWeixinKeywords:
             for i in query:
                 try:
                     handled_body.append(i[0])
-                    keywords = self.util.keywords_analyse(i[1], strip_tag=True)
+                    keywords = self.util.keywords_analyse(i[1], topK=5, strip_tag=True)
                     key_map[i[0]] = keywords
                     for key in keywords:
                         print key
@@ -80,7 +80,7 @@ class CmdWeixinKeywords:
             for i in query:
                 try:
                     handled_title.append(i[0])
-                    keywords = self.util.keywords_analyse(i[1])
+                    keywords = self.util.keywords_analyse(i[1], topK=5)
                     key_map[i[0]] = keywords
                     for key in keywords:
                         print key
