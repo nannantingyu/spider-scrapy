@@ -9,7 +9,7 @@ from scrapy.http.cookies import CookieJar
 
 class CrawlWeixinSearchSpider(scrapy.Spider):
     name = "crawl_weixin_search"
-    allowed_domains = ["weixin.sogou.com", "mp.weixin.qq.com"]
+    allowed_domains = ["weixin.sogou.com", "mp.weixin.qq.com", "pb.sogou.com"]
     start_urls = [
         'http://weixin.sogou.com/weixin?usip=&query=%E5%A4%A7%E7%B1%B3&ft=&tsn=1&et=&interation=&type=2&wxid=&page=2&ie=utf8']
 
@@ -43,13 +43,19 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                                callback=self.parse_profile)]
 
     def parse_profile(self, response):
-	print response.status
-	print response.headers
         yield scrapy.Request('http://weixin.sogou.com/websearch/wexinurlenc_sogou_profile.jsp',
                                meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
-                               callback=self.parse_cookie)
+                               callback=self.parse_suv)
+
+    def parse_suv(self, response):
+        timestr = str(int(time.time()) * 1000)
+        print "parse_suv", timestr
+        yield scrapy.Request('https://pb.sogou.com/pv.gif?uigs_t={timestr}&uigs_productid=vs_web&terminal=web&vstype=weixin&pagetype=index&channel=index_pc&type=weixin_search_pc&wuid=&snuid=&uigs_uuid={timestr}&login=0&uigs_refer='.format(timestr=timestr),
+                             meta={'cookiejar': self.name, 'dont_redirect': True,
+                                   'handle_httpstatus_list': [301, 302, 403]}, callback=self.parse_cookie)
 
     def parse_cookie(self, response):
+        print "get suv", response.status
         yield scrapy.Request(
             'http://weixin.sogou.com/weixin?type=2&query={query}&ie=utf8&s_from=input&_sug_=n&_sug_type_=&w=01015002&oq=&ri=0&sourceid=sugg&sut=375&sst0=1502699460309&lkt=1%2C1502699460207%2C1502699460207'.format(
                 query=urllib.quote(self.type[self.type_index]['name'])),
@@ -64,39 +70,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
             yield scrapy.Request(url, meta={'cookiejar': self.name, 'dont_redirect': True,
                                    'handle_httpstatus_list': [301, 302, 400]},
                                  headers=self.get_header(),
-                             callback=self.parse_suv)
-    def parse_suv(self, response):
-	timestr = str(int(time.time())*1000)
-	yield scrapy.Request('https://pb.sogou.com/pv.gif?uigs_t={timestr}&uigs_productid=vs_web&terminal=web&vstype=weixin&pagetype=result&channel=result_article&s_from=input&sourceid=&type=weixin_search_pc&uigs_cookie=SUID%2Csct&uuid=40521297-4382-4ca6-8bf2-88606d190aa1&query=%E5%BE%AE%E4%BF%A1&weixintype=2&exp_status=-1&exp_id_list=0_0&wuid=&snuid=7CCFFE553A3E5AB03AFEF1043B0D0470&rn=1&login=0&page=1&uigs_refer=http%3A%2F%2Fweixin.sogou.com%2F'.format(timestr=timestr), meta={'cookiejar': self.name}, callback=self.parse)
-
-
-    def get_header(self):
-        return {"Referer": self.referer.format(query=urllib.quote(self.typename), time=str(int(time.time()*1000)))}
-
-    def get_next_page(self):
-        ret = None
-
-        if self.type_index < len(self.type) and not self.only_hot:
-            self.type_now = self.type[self.type_index]
-            if self.type_now['page_now'] > self.type_now['page_all']:
-                self.type_index += 1
-
-                return self.get_next_page()
-
-            if self.type_index < len(self.type):
-                ret = self.page_url.format(query=urllib.quote(self.type_now['name']),
-                                           page=self.type_now['page_now'])
-                self.type_now['page_now'] += 1
-                self.typename = self.type_now['name']
-        else:
-            # 从redis读取热门搜索词
-            keywords = self.r.spop("weixin_hot_keywords")
-            if keywords:
-                ret = self.page_url.format(query=urllib.quote(keywords), page=1)
-                self.typename = keywords
-                self.only_hot = True
-
-        return ret
+                             callback=self.parse)
 
     def parse(self, response):
         print response.url, response.status, response.request.headers
@@ -134,8 +108,8 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 for _img in img:
                     name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz_?(.*)\/(.*?)\/")
                     inames = name_r.findall(_img)
-		    img_sufix = ".jpg" if len(inames) == 0 or not inames[0][0] else inames[0][0]
-                    iname = "%s.%s"%(inames[0][1], inames[0][0]) if len(inames) > 0 else None
+                    img_sufix = ".jpg" if len(inames) == 0 or not inames[0][0] else inames[0][0]
+                    iname = "%s.%s"%(inames[0][1], img_sufix) if len(inames) > 0 else None
                     _img_name = self.util.downfile(_img, img_name=iname, need_down=True)
                     imgs.append(_img_name)
 
@@ -165,9 +139,6 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                     all_items[item_index] = item
 		
-                    # if self.only_hot:
-                    #     break
-
             if len(all_items) > 0:
                 yield all_items
 
@@ -178,3 +149,31 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                                        'handle_httpstatus_list': [301, 302, 400]},
                                  headers=self.get_header(),
                                  callback=self.parse)
+
+    def get_next_page(self):
+        ret = None
+
+        if self.type_index < len(self.type) and not self.only_hot:
+            self.type_now = self.type[self.type_index]
+            if self.type_now['page_now'] > self.type_now['page_all']:
+                self.type_index += 1
+
+                return self.get_next_page()
+
+            if self.type_index < len(self.type):
+                ret = self.page_url.format(query=urllib.quote(self.type_now['name']),
+                                           page=self.type_now['page_now'])
+                self.type_now['page_now'] += 1
+                self.typename = self.type_now['name']
+        else:
+            # 从redis读取热门搜索词
+            keywords = self.r.spop("weixin_hot_keywords")
+            if keywords:
+                ret = self.page_url.format(query=urllib.quote(keywords), page=1)
+                self.typename = keywords
+                self.only_hot = True
+
+        return ret
+
+    def get_header(self):
+        return {"Referer": self.referer.format(query=urllib.quote(self.typename), time=str(int(time.time()*1000)))}
