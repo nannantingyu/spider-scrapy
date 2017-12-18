@@ -40,11 +40,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         # 种cookie
         return [scrapy.Request('http://weixin.sogou.com/',
                                meta={'cookiejar': self.name, 'dont_merge_cookies': True, 'handle_httpstatus_list': [301, 302, 403]},
-                               callback=self.parse_suv)]
-    def parse_suv(self, response):
-	timestr = str(int(time.time())*1000)
-	print timestr
-	yield scrapy.Request("https://pb.sogou.com/pv.gif?uigs_t={timestr}&uigs_productid=vs_web&terminal=web&vstype=weixin&pagetype=index&channel=index_pc&type=weixin_search_pc&wuid=&snuid=&uigs_uuid={timestr}&login=0&uigs_refer=".format(timestr=timestr), meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403, 404, 200]}, callback=self.parse_profile)
+                               callback=self.parse_profile)]
 
     def parse_profile(self, response):
 	print response.status
@@ -68,7 +64,11 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
             yield scrapy.Request(url, meta={'cookiejar': self.name, 'dont_redirect': True,
                                    'handle_httpstatus_list': [301, 302, 400]},
                                  headers=self.get_header(),
-                             callback=self.parse)
+                             callback=self.parse_suv)
+    def parse_suv(self, response):
+	timestr = str(int(time.time())*1000)
+	yield scrapy.Request('https://pb.sogou.com/pv.gif?uigs_t={timestr}&uigs_productid=vs_web&terminal=web&vstype=weixin&pagetype=result&channel=result_article&s_from=input&sourceid=&type=weixin_search_pc&uigs_cookie=SUID%2Csct&uuid=40521297-4382-4ca6-8bf2-88606d190aa1&query=%E5%BE%AE%E4%BF%A1&weixintype=2&exp_status=-1&exp_id_list=0_0&wuid=&snuid=7CCFFE553A3E5AB03AFEF1043B0D0470&rn=1&login=0&page=1&uigs_refer=http%3A%2F%2Fweixin.sogou.com%2F'.format(timestr=timestr), meta={'cookiejar': self.name}, callback=self.parse)
+
 
     def get_header(self):
         return {"Referer": self.referer.format(query=urllib.quote(self.typename), time=str(int(time.time()*1000)))}
