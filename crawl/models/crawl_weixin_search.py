@@ -22,7 +22,7 @@ class Crawl_Weixin_Search(Base):
     source_id = Column(String(50))
     author = Column(String(64))
     hits = Column(Integer)
-    key_state = Column(SmallInteger)
+    key_state = Column(SmallInteger, default=0)
 
     created_time = Column(DateTime, default=func.now())
     updated_time = Column(DateTime, default=func.now(), onupdate=func.now())

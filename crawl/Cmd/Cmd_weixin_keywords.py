@@ -25,99 +25,91 @@ class CmdWeixinKeywords:
     def readbody(self):
         logging.info("This is test log")
         with session_scope(self.sess) as session:
-            while True:
-                query = session.query(CrawlWeixinArticleDetail.id, CrawlWeixinArticleDetail.body).filter(
-                    CrawlWeixinArticleDetail.key_state == 0
-                ).limit(200).all()
+            query = session.query(CrawlWeixinArticleDetail.id, CrawlWeixinArticleDetail.body).filter(
+                CrawlWeixinArticleDetail.key_state == 0
+            ).limit(200).all()
 
-                if len(query) == 0:
-                    break
+            handled_body = []
+            key_map = {}
 
-                handled_body = []
-                key_map = {}
+            for i in query:
+                try:
+                    handled_body.append(i[0])
+                    keywords = self.util.keywords_analyse(i[1], strip_tag=True)
+                    key_map[i[0]] = keywords
+                    for key in keywords:
+                        print key
+                except Exception, e:
+                    logging.error(e)
 
-                for i in query:
-                    try:
-                        handled_body.append(i[0])
-                        keywords = self.util.keywords_analyse(i[1], strip_tag=True)
-                        key_map[i[0]] = keywords
-                        for key in keywords:
-                            print key
-                    except Exception, e:
-                        logging.error(e)
+            if len(handled_body) > 0:
+                session.query(CrawlWeixinArticleDetail).filter(
+                    CrawlWeixinArticleDetail.id.in_(handled_body)
+                ).update({"key_state": 1}, synchronize_session=False)
 
-                if len(handled_body) > 0:
-                    session.query(CrawlWeixinArticleDetail).filter(
-                        CrawlWeixinArticleDetail.id.in_(handled_body)
-                    ).update({"key_state": 1}, synchronize_session=False)
+                all_keywords_map = []
+                for id in key_map:
+                    for word in key_map[id]:
+                        model = Crawl_keywords_map()
+                        model.s_id = id
+                        model.keyword = word
+                        model.tb = Crawl_Weixin_Search.__tablename__
 
-                    all_keywords_map = []
-                    for id in key_map:
-                        for word in key_map[id]:
-                            model = Crawl_keywords_map()
-                            model.s_id = id
-                            model.keyword = word
-                            model.tb = Crawl_Weixin_Search.__tablename__
+                        qu = session.query(Crawl_keywords_map).filter(
+                            and_(
+                                Crawl_keywords_map.s_id == id,
+                                Crawl_keywords_map.keyword == word
+                            )
+                        ).one_or_none()
 
-                            qu = session.query(Crawl_keywords_map).filter(
-                                and_(
-                                    Crawl_keywords_map.s_id == id,
-                                    Crawl_keywords_map.keyword == word
-                                )
-                            ).one_or_none()
+                        if not qu:
+                            all_keywords_map.append(model)
 
-                            if not qu:
-                                all_keywords_map.append(model)
-
-                    if len(all_keywords_map) > 0:
-                        session.add_all(all_keywords_map)
+                if len(all_keywords_map) > 0:
+                    session.add_all(all_keywords_map)
 
     def readinfo(self):
         with session_scope(self.sess) as session:
-            while True:
-                query = session.query(Crawl_Weixin_Search.id, Crawl_Weixin_Search.title).filter(
-                    Crawl_Weixin_Search.key_state == 0
-                ).limit(200).all()
+            query = session.query(Crawl_Weixin_Search.id, Crawl_Weixin_Search.title).filter(
+                Crawl_Weixin_Search.key_state == 0
+            ).limit(200).all()
 
-                if len(query) == 0:
-                    break
+            handled_title = []
+            key_map = {}
 
-                handled_title = []
-                key_map = {}
+            for i in query:
+                try:
+                    handled_title.append(i[0])
+                    keywords = self.util.keywords_analyse(i[1])
+                    key_map[i[0]] = keywords
+                    for key in keywords:
+                        print key
+                except Exception, e:
+                    logging.error(e)
 
-                for i in query:
-                    try:
-                        handled_title.append(i[0])
-                        keywords = self.util.keywords_analyse(i[1])
-                        key_map[i[0]] = keywords
-                        for key in keywords:
-                            print key
-                    except Exception, e:
-                        logging.error(e)
+            if len(handled_title) > 0:
+                session.query(Crawl_Weixin_Search).filter(
+                    Crawl_Weixin_Search.id.in_(handled_title)
+                ).update({"key_state": 1}, synchronize_session=False)
 
-                if len(handled_title) > 0:
-                    session.query(Crawl_Weixin_Search).filter(
-                        Crawl_Weixin_Search.id.in_(handled_title)
-                    ).update({"key_state": 1}, synchronize_session=False)
+                all_keywords_map = []
+                for id in key_map:
+                    for word in key_map[id]:
+                        model = Crawl_keywords_map()
+                        model.s_id = id
+                        model.keyword = word
+                        model.tb = Crawl_Weixin_Search.__tablename__
 
-                    all_keywords_map = []
-                    for id in key_map:
-                        for word in key_map[id]:
-                            model = Crawl_keywords_map()
-                            model.s_id = id
-                            model.keyword = word
-                            model.tb = Crawl_Weixin_Search.__tablename__
+                        qu = session.query(Crawl_keywords_map).filter(
+                            and_(
+                                Crawl_keywords_map.s_id == id,
+                                Crawl_keywords_map.keyword == word
+                            )
+                        ).one_or_none()
 
-                            qu = session.query(Crawl_keywords_map).filter(
-                                and_(
-                                    Crawl_keywords_map.s_id == id,
-                                    Crawl_keywords_map.keyword == word
-                                )
-                            ).one_or_none()
+                        if not qu:
+                            all_keywords_map.append(model)
 
-                            if not qu:
-                                all_keywords_map.append(model)
-
-                    if len(all_keywords_map) > 0:
-                        session.add_all(all_keywords_map)
+                if len(all_keywords_map) > 0:
+                    session.add_all(all_keywords_map)
 
