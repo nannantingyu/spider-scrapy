@@ -59,9 +59,18 @@ class CmdWeixinKeywords:
                             model.keyword = word
                             model.tb = Crawl_Weixin_Search.__tablename__
 
-                            all_keywords_map.append(model)
+                            qu = session.query(Crawl_keywords_map).filter(
+                                and_(
+                                    Crawl_keywords_map.s_id == id,
+                                    Crawl_keywords_map.keyword == word
+                                )
+                            ).one_or_none()
 
-                    session.add_all(all_keywords_map)
+                            if not qu:
+                                all_keywords_map.append(model)
+
+                    if len(all_keywords_map) > 0:
+                        session.add_all(all_keywords_map)
 
     def readinfo(self):
         with session_scope(self.sess) as session:
@@ -109,5 +118,6 @@ class CmdWeixinKeywords:
                             if not qu:
                                 all_keywords_map.append(model)
 
-                    session.add_all(all_keywords_map)
+                    if len(all_keywords_map) > 0:
+                        session.add_all(all_keywords_map)
 
