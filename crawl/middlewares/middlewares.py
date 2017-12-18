@@ -197,6 +197,8 @@ class PhantomJSMiddleware(object):
 
         if request.meta.has_key('PhantomJS'):
             driver = webdriver.PhantomJS(service_log_path="logs/spider.log")
+            if request.meta.has_key('cookies'):
+                driver.add_cookie(request.meta.cookies)
             driver.get(request.url)
 
             content = driver.page_source.encode('utf-8')
