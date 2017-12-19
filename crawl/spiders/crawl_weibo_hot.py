@@ -64,6 +64,8 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                 if pub_time is not None:
                     pub_time = datetime.datetime.strptime(pub_time, "%Y-%m-%d %H:%M")
 
+                source_url = detail.xpath(".//div[@class='WB_from S_txt2']/a[1]/@href").extract_first()
+
                 content = detail.xpath(".//div[@class='WB_text W_f14']").extract_first()
                 content = content.replace(u"\xa0", "") if content is not None else ""
 
@@ -92,6 +94,7 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                     print "author_link", author_link
                     print "pub_time", pub_time
                     print "source_id", source_id
+                    print "source_url", source_url
                     print "\n\n"
                 except Exception, e:
                     print e
@@ -104,6 +107,7 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                 item['author_link'] = author_link
                 item['pub_time'] = pub_time
                 item['source_id'] = source_id
+                item['source_url'] = source_url
 
                 yield item
 

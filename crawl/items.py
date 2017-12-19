@@ -400,5 +400,6 @@ class CrawlWeibo(scrapy.Item):
     author_name = scrapy.Field()
     author_link = scrapy.Field()
     author_img = scrapy.Field()
+    source_url = scrapy.Field()
     source_id = scrapy.Field()
     images = scrapy.Field()

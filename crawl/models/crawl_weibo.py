@@ -15,6 +15,7 @@ class Crawl_Weibo(Base):
     author_name = Column(String(32))
     author_link = Column(String(256))
     author_img = Column(String(256))
+    source_url = Column(String(32))
     source_id = Column(String(32))
     images = Column(Text)
 
