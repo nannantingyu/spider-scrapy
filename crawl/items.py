@@ -393,3 +393,12 @@ class CrawlHotkey(scrapy.Item):
     keyword = scrapy.Field()
     order = scrapy.Field()
     source_id = scrapy.Field()
+
+class CrawlWeibo(scrapy.Item):
+    pub_time = scrapy.Field()
+    content = scrapy.Field()
+    author_name = scrapy.Field()
+    author_link = scrapy.Field()
+    author_img = scrapy.Field()
+    source_id = scrapy.Field()
+    images = scrapy.Field()

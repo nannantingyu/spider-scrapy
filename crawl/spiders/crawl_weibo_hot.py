@@ -1,59 +1,106 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import datetime
-from bs4 import BeautifulSoup
+import datetime, time, json, re
+from scrapy.selector import Selector
+from crawl.Common.Util import Nth, util
+from crawl.items import CrawlWeibo
 
 class CrawlWeiboHotSpider(scrapy.Spider):
     name = 'crawl_weibo_hot'
-    allowed_domains = ['weibo.com']
+    allowed_domains = ['weibo.com', 'd.weibo.com']
     start_urls = ['http://weibo.com/']
 
     custom_settings = {
         'LOG_FILE': 'logs/weibo_hot_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d'))
     }
 
-    "https://d.weibo.com/p/aj/v6/mblog/mbloglist?ajwvr=6&domain=102803_ctg1_1760_-_ctg1_1760&pagebar=0&tab=home&current_page=1&pre_page=1&page=1&pl_name=Pl_Core_NewMixFeed__3&id=102803_ctg1_1760_-_ctg1_1760&script_uri=/&feed_type=1&domain_op=102803_ctg1_1760_-_ctg1_1760&__rnd=1513645659822"
+    def __init__(self):
+        self.base_url = "https://d.weibo.com/p/aj/v6/mblog/mbloglist?ajwvr=6&domain=102803_ctg1_1760_-_ctg1_1760&pagebar=0&tab=home&current_page={current_page}&pre_page={pre_page}&page={page}&pl_name=Pl_Core_NewMixFeed__3&id=102803_ctg1_1760_-_ctg1_1760&script_uri=/&feed_type=1&domain_op=102803_ctg1_1760_-_ctg1_1760&__rnd={time}"
+        self.page = self.current_page = self.pre_page = 1
+        self.util = util()
+
+    def get_url(self):
+        timestr = str(int(time.time()) * 1000)
+        return self.base_url.format(page=self.page, current_page=self.current_page, pre_page=self.pre_page, time=timestr)
 
     def start_requests(self):
-        # 保存cookie，同时模拟浏览器访问过程，设置refer
-        return [scrapy.Request("https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=http%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1504681177.4204",
-                               meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302]}, callback=self.parse_cookie)]
+        return [scrapy.Request(self.get_url(),
+                               meta={'cookiejar': 'crawl_weibo_login', 'dont_redirect': True,
+                                   'handle_httpstatus_list': [301, 302, 403]},
+                               callback=self.parse_cookie)]
 
     def parse_cookie(self, response):
-        with open("weibo.html", "w") as fs:
-            fs.write(response.body)
+        print response.status
+        data = json.loads(response.body)
+        html = data['data'].replace(u"\u200b", "").replace("\r", "").replace("\n", "").replace(u"\xfb", "").replace(
+            u"\xf1", "")
 
-        yield scrapy.Request("https://passport.weibo.com/visitor/visitor?a=incarnate&t=ozD4QaZDtghqkBlmJyBrr9BAhFtSZHzidvH18aseoYI%3D&w=2&c=095&gc=&cb=cross_domain&from=weibo&_rand=0.7829101177189541",
-                             meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302]},
-                             callback=self.parse_redirect)
+        with open("weibo_index.html", "w") as fs:
+            fs.write(html)
 
-    def parse_redirect(self, response):
-        with open("weibo2.html", "w") as fs:
-            fs.write(response.body)
-
-        yield scrapy.Request(self.base_url.format(page=self.page_now),
-                             meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302]}, callback=self.parse_page)
-
-    def parse_content(self, response):
-        divs = response.xpath(".//div[@id='PCD_pictext_i_v5']/ul/div[@class='UG_list_b']")
+        st = Selector(text=html, type='html')
+        divs = st.xpath(".//div[contains(@class, 'WB_cardwrap WB_feed_type S_bg2')]")
+        # divs_b = st.xpath(".//ul[contains(@class, 'pt_ul')]/div[contains(@class, 'UG_list_b')]")
+        # divs_v = st.xpath(".//ul[contains(@class, 'pt_ul')]/div[contains(@class, 'UG_list_v2')]")
 
         for div in divs:
-            pic = div.xpath(".//div[@class='pic W_piccut_v']/img/@src").extract_first()
-            content = div.xpath(".//div[@class='list_des']/h3/div").extract()
+            info = div.xpath(".//div[@class='WB_feed_detail clearfix']")
+            author = info.xpath(".//div[@class='WB_face W_fl']/div[@class='face']/a")
+            author_link = author.xpath("./@href").extract_first()
+            author_img = author.xpath("./img/@src").extract_first()
 
-            author_info = div.xpath(".//div[@class='list_des']/div[@class='subinfo_box clearfix']")
-            author_img = author_info.xpath("./a[1]//img/@src").extract_first()
-            author_name = author_info.xpath("./a[2]/span/text()").extract_first()
-            author_link = author_info.xpath("./a[1]/@href").extract_first()
-            if author_link is not None and not author_link.starts_with("http"):
-                author_link = "https://weibo.com" + author_link
+            if author_link is not None and not author_link.startswith("http"):
+                author_link = "https:" + author_link
+            if author_img is not None and not author_img.startswith("http"):
+                author_img = "https:" + author_img
 
-            pub_time = author_info.xpath(".//span[@class='subinfo S_txt2']/text()").extract_first()
+            detail = div.xpath(".//div[@class='WB_detail']")
+            author_name = detail.xpath("./div[@class='WB_info']/a/text()").extract_first()
+            author_name = author_name.strip() if author_name is not None else None
 
-            print "pic", pic
-            print "content", content
-            print "author_img", author_img
-            print "author_name", author_name
-            print "author_link", author_link
-            print "pub_time", pub_time
-            print "\n\n"
+            pub_time = detail.xpath(".//div[@class='WB_from S_txt2']/a[1]/@title").extract_first()
+            if pub_time is not None:
+                pub_time = datetime.datetime.strptime(pub_time, "%Y-%m-%d %H:%M")
+
+            content = detail.xpath(".//div[@class='WB_text W_f14']").extract_first()
+            content = content.replace(u"\xa0", "") if content is not None else ""
+
+            images = detail.xpath(".//div[@class='media_box']/ul/li/img/@src").extract()
+            for i,img in enumerate(images):
+                images[i] = "http:" + img
+
+            source_id = div.xpath("./@mid").extract_first()
+
+            content_img_pat = re.compile(r'src="(.*?)"')
+            all_img = content_img_pat.findall(content)
+            replaced_imgs = []
+            for img in all_img:
+                img = "http:" + img
+                img_src = self.util.downfile(img, fix_path=True, need_down=True)
+                print img, img_src
+                replaced_imgs.append(img_src)
+
+            content = content_img_pat.sub(Nth(replaced_imgs), content)
+
+            try:
+                print "images", images
+                print "content", content
+                print "author_img", author_img
+                print "author_name", author_name
+                print "author_link", author_link
+                print "pub_time", pub_time
+                print "source_id", source_id
+                print "\n\n"
+            except Exception, e:
+                print e
+
+            item = CrawlWeibo()
+            item['images'] = ",".join(images)
+            item['content'] = content
+            item['author_img'] = author_img
+            item['author_name'] = author_name
+            item['author_link'] = author_link
+            item['pub_time'] = pub_time
+            item['source_id'] = source_id
+
+            yield item
