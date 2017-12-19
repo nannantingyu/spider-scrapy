@@ -19,6 +19,8 @@ load_dotenv(join(APP_DIR, '.env'))
 BOT_NAME = 'crawl'
 
 DATA_DIR = join(APP_DIR, BOT_NAME, "data")
+Tmp_Dir = join(APP_DIR, BOT_NAME, 'tmp')
+Cookie_Dir = join(APP_DIR, BOT_NAME, 'cookies')
 
 SPIDER_MODULES = ['crawl.spiders']
 NEWSPIDER_MODULE = 'crawl.spiders'
@@ -37,8 +39,6 @@ REDIS = {
     'host': '127.0.0.1',
     'port': 6379
 }
-
-Tmp_Dir = join(APP_DIR, BOT_NAME, 'tmp')
 
 LOG_LEVEL = logging.INFO
 LOG_FILE = join(APP_DIR, BOT_NAME, 'logs/spider.log')

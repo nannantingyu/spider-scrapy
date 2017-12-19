@@ -85,8 +85,10 @@ class util(object):
         htmlcontent = img_src_pat.sub(Nth(uuids), htmlcontent)
 
         # 删除文章中的链接
-        a_pat = re.compile("<a.*?>(.*)<\/a>")
-        htmlcontent = a_pat.sub("\g<1>", htmlcontent)
+        a_pat_1 = re.compile("<a.*?>")
+        htmlcontent = a_pat_1.sub("", htmlcontent)
+        a_pat_2 = re.compile("</a>")
+        htmlcontent = a_pat_2.sub("", htmlcontent)
 
         return htmlcontent
 
