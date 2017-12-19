@@ -12,6 +12,7 @@ from scrapy.downloadermiddlewares.cookies import CookiesMiddleware
 import logging, re, os, json
 from selenium import webdriver
 from scrapy.http import HtmlResponse
+from crawl.settings import Cookie_Dir
 
 logger = logging.getLogger(__name__)
 
@@ -201,6 +202,7 @@ class PhantomJSMiddleware(object):
 
         if request.meta.has_key('cookiefile'):
             cookiefile = request.meta.get('cookiefile')
+	    cookiefile = os.path.join(Cookie_Dir, cookiefile)
             with open(cookiefile, "r") as fs:
                 cookies = json.load(fs)
 
