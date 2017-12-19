@@ -108,10 +108,14 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                 yield item
 
         else:
-	    print "第%d次尝试登陆微博"%self.login_time
+            print "第%d次尝试登陆微博"%self.login_time
             if self.login_time < 5:
                 self.login_cmd.start()
                 self.login_time += 1
+                yield scrapy.Request(self.get_url(),
+                                     meta={'cookiejar': 'crawl_weibo_login', 'dont_redirect': True,
+                                           'handle_httpstatus_list': [301, 302, 403]},
+                                     callback=self.parse_cookie)
             else:
                 Email.send("登录微博失败5次，请查看日志", ['939259192@qq.com'], subject="爬虫失败提醒")
 
