@@ -72,7 +72,7 @@ class OtherPipeline(object):
                 Crawl_Weixin_Search.source_id == item['source_id']
             ).one_or_none()
 
-            if not query:
+            if query:
                 article_detail = CrawlWeixinArticleDetail()
                 article_detail.id = query[0]
                 article_detail.body = item['body']
