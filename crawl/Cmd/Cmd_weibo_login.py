@@ -6,6 +6,8 @@ from crawl.settings import Cookie_Dir
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
+from urllib import quote_plus
+
 
 class CmdWeiboLogin:
     def __init__(self):
@@ -15,24 +17,15 @@ class CmdWeiboLogin:
         }
 
         self.cookie_file_path = os.path.join(Cookie_Dir, "weibo.json")
+        self.session = requests.session()
 
     def start(self):
-        try:
-            from PIL import Image
-        except:
-            pass
-        try:
-            from urllib.parse import quote_plus
-        except:
-            from urllib import quote_plus
-
-        session = requests.session()
         index_url = "http://weibo.com/login.php"
         try:
-            index_cookie = session.get(index_url, headers=self.headers, timeout=2)
+            index_cookie = self.session.get(index_url, headers=self.headers, timeout=2)
             self.save_cookie(index_cookie.cookies)
         except:
-            index_cookie = session.get(index_url, headers=self.headers)
+            index_cookie = self.session.get(index_url, headers=self.headers)
             self.save_cookie(index_cookie.cookies)
 
         self.login("nannantingyu@hotmail.com", "wait12345")
@@ -70,7 +63,7 @@ class CmdWeiboLogin:
         对应 Python 3 中的是 urllib.parse.quote_plus
         然后在 base64 加密后decode
         """
-        username_quote = self.quote_plus(username)
+        username_quote = quote_plus(username)
         username_base64 = base64.b64encode(username_quote.encode("utf-8"))
         return username_base64.decode("utf-8")
 
