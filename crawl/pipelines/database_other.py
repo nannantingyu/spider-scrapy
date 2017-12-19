@@ -38,7 +38,7 @@ class OtherPipeline(object):
             self.parse_weibo_seach(item)
         elif spider.name in ['crawl_baidu_search']:
             self.parse_baidu_seach(item)
-        elif spider.name in ['crawl_weibo_index']:
+        elif spider.name in ['crawl_weibo_hot']:
             self.parse_weibo(item)
 
     def parse_weibo(self, item):
