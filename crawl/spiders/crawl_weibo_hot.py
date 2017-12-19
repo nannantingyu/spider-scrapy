@@ -12,6 +12,8 @@ class CrawlWeiboHotSpider(scrapy.Spider):
         'LOG_FILE': 'logs/weibo_hot_{dt}.log'.format(dt=datetime.datetime.now().strftime('%Y%m%d'))
     }
 
+    "https://d.weibo.com/p/aj/v6/mblog/mbloglist?ajwvr=6&domain=102803_ctg1_1760_-_ctg1_1760&pagebar=0&tab=home&current_page=1&pre_page=1&page=1&pl_name=Pl_Core_NewMixFeed__3&id=102803_ctg1_1760_-_ctg1_1760&script_uri=/&feed_type=1&domain_op=102803_ctg1_1760_-_ctg1_1760&__rnd=1513645659822"
+
     def start_requests(self):
         # 保存cookie，同时模拟浏览器访问过程，设置refer
         return [scrapy.Request("https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=http%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1504681177.4204",
@@ -31,11 +33,6 @@ class CrawlWeiboHotSpider(scrapy.Spider):
 
         yield scrapy.Request(self.base_url.format(page=self.page_now),
                              meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302]}, callback=self.parse_page)
-
-    # def start_requests(self):
-    #     return [scrapy.Request("https://weibo.com/?category=99991",
-    #                            meta={'cookiejar': self.name, 'handle_httpstatus_list': [301, 302, 403], 'PhantomJS': True},
-    #                            callback=self.parse_content)]
 
     def parse_content(self, response):
         divs = response.xpath(".//div[@id='PCD_pictext_i_v5']/ul/div[@class='UG_list_b']")

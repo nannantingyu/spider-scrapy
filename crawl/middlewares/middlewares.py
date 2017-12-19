@@ -197,16 +197,19 @@ class PhantomJSMiddleware(object):
 
         if request.meta.has_key('PhantomJS'):
             driver = webdriver.PhantomJS(service_log_path="logs/spider.log")
-            driver.get(request.url)
-        with open("cookies/cookie.json", "r") as fs:
-            cookies = json.load(fs)
+            # driver.get(request.url)
 
-        for coo in cookies:
-            print coo
-            driver.add_cookie(coo)
-            #driver.add_cookie(request.cookies)
-            driver.get(request.url)
-            time.sleep(15)
-            content = driver.page_source.encode('utf-8')
-            driver.quit()
-            return HtmlResponse(request.url, encoding='utf-8', body=content, request=request)
+        if request.meta.has_key('cookiefile'):
+            cookiefile = request.meta.get('cookiefile')
+            with open(cookiefile, "r") as fs:
+                cookies = json.load(fs)
+
+            for coo in cookies:
+                driver.add_cookie(coo)
+                #driver.add_cookie(request.cookies)
+
+        driver.get(request.url)
+        time.sleep(5)
+        content = driver.page_source.encode('utf-8')
+        driver.quit()
+        return HtmlResponse(request.url, encoding='utf-8', body=content, request=request)
