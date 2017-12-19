@@ -16,7 +16,7 @@ class CrawlWeiboLoginSpider(scrapy.Spider):
             cookies = json.load(fs)
 
         print cookies
-        return [scrapy.Request("https://d.weibo.com/", cookies=cookies, meta={'cookiejar': self.name, 'dont_redirect': True,
+        return [scrapy.Request("https://d.weibo.com/", meta={'cookiejar': self.name, 'dont_redirect': True,
                                    'handle_httpstatus_list': [301, 302, 403], 'PhantomJS': True}, callback=self.parse_cookie)]
 
     def parse_cookie(self, response):
