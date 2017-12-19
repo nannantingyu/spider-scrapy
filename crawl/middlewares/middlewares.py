@@ -195,23 +195,22 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
 class PhantomJSMiddleware(object):
     @classmethod
     def process_request(cls, request, spider):
-
         if request.meta.has_key('PhantomJS'):
             driver = webdriver.PhantomJS(service_log_path="logs/spider.log")
             # driver.get(request.url)
 
-        if request.meta.has_key('cookiefile'):
-            cookiefile = request.meta.get('cookiefile')
-	    cookiefile = os.path.join(Cookie_Dir, cookiefile)
-            with open(cookiefile, "r") as fs:
-                cookies = json.load(fs)
+            if request.meta.has_key('cookiefile'):
+                cookiefile = request.meta.get('cookiefile')
+                cookiefile = os.path.join(Cookie_Dir, cookiefile)
+                with open(cookiefile, "r") as fs:
+                    cookies = json.load(fs)
 
-            for coo in cookies:
-                driver.add_cookie(coo)
-                #driver.add_cookie(request.cookies)
+                for coo in cookies:
+                    driver.add_cookie(coo)
+                    #driver.add_cookie(request.cookies)
 
-        driver.get(request.url)
-        time.sleep(5)
-        content = driver.page_source.encode('utf-8')
-        driver.quit()
-        return HtmlResponse(request.url, encoding='utf-8', body=content, request=request)
+            driver.get(request.url)
+            time.sleep(5)
+            content = driver.page_source.encode('utf-8')
+            driver.quit()
+            return HtmlResponse(request.url, encoding='utf-8', body=content, request=request)
