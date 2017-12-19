@@ -8,6 +8,10 @@ from urlparse import urlparse
 from PIL import Image
 pytesseract.pytesseract.tesseract_cmd = 'tesseract.exe'
 
+from email.mime.text import MIMEText
+from email.header import Header
+import smtplib
+
 class util(object):
     def __init__(self):
         self.r = redis.Redis(host=setting.REDIS['host'], port=setting.REDIS['port'])
@@ -154,6 +158,26 @@ class Verify(object):
                 table.append(1)
 
         return table
+
+class Email(object):
+    @classmethod
+    def send(cls, content, to_addr, from_addr='captain_tu@aliyun.com', subject=""):
+        to_addr = to_addr if to_addr is list else [to_addr]
+        msg = MIMEText(content, 'plain', 'utf-8')
+        msg['From'] = Header(from_addr, 'utf-8')
+        msg['To'] = Header(to_addr[0], 'utf-8')
+
+        msg['Subject'] = Header(subject, 'utf-8')
+        password = 'wait12345'
+
+        smtp_server = 'smtp.aliyun.com'
+
+        server = smtplib.SMTP_SSL(smtp_server, 465)
+        server.set_debuglevel(1)
+
+        server.login(from_addr, password)
+        server.sendmail(from_addr, [to_addr], msg.as_string())
+        server.quit()
 
 @contextmanager
 def session_scope(session):
