@@ -108,6 +108,7 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                 yield item
 
         else:
+	    print "第%d次尝试登陆微博"%self.login_time
             if self.login_time < 5:
                 self.login_cmd.start()
                 self.login_time += 1

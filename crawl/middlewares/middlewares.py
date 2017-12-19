@@ -182,7 +182,7 @@ class CookiesSaveingMiddleware(CookiesMiddleware):
             with open(cookie_file, 'r') as fs:
                 file_cookie = json.load(fs)
 
-        if len(file_cookie) > 0:
+        if file_cookie is not None:
             file_cookie.update(cookies)
         else:
             file_cookie = cookies

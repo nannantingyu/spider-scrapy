@@ -58,11 +58,11 @@ class CmdWeiboLogin:
                 json.dump(cookie_file, wfs)
 
             cookie_file_login = os.path.join(Cookie_Dir, "cookie_crawl_weibo_login.pkl")
-            cookie_login_file = {}
             if os.path.exists(cookie_file_login):
                 with open(cookie_file_login, "r") as fs:
                     cookie_login_file = json.load(fs)
 
+            cookie_login_file = {} if cookie_login_file is None else cookie_login_file
             cookie_login_file = cookie_login_file.update(maps)
             with open(cookie_file_login, "w") as wfs:
                 json.dump(cookie_login_file, wfs)
