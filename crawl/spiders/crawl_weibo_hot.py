@@ -84,7 +84,7 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                     print img, img_src
                     replaced_imgs.append(img_src)
 
-                content = content_img_pat.sub(Nth(replaced_imgs), content)
+                content = content_img_pat.sub(Nth(replaced_imgs, with_prefix=False), content)
 
                 try:
                     print "images", images

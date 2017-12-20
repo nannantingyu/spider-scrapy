@@ -100,12 +100,13 @@ class util(object):
         return htmlcontent
 
 class Nth(object):
-    def __init__(self, uuids):
+    def __init__(self, uuids, with_prefix=True):
         self.uuids = uuids
         self.calls = 0
+        self.with_prefix = with_prefix
 
     def __call__(self, matchobj):
-        strreplace = " src=\"" + setting.URL_PREFIX + self.uuids[self.calls] + "\""
+        strreplace = " src=\"" + (setting.URL_PREFIX if self.with_prefix else "") + self.uuids[self.calls] + "\""
 
         self.calls += 1
         return strreplace
