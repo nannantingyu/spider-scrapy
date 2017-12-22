@@ -79,82 +79,87 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         if response.status == 302:
             # 如果被302跳转，则删除cookie，将url重新加入到队列中
             self.r.sadd("weixin_list_url", response.url)
-            cookie_file = os.path.join(Cookie_Dir, "cookie_"+self.name+".pkl")
+            cookie_file = os.join(Cookie_Dir, "cookie_"+self.name)
             logging.info("[delete cookie], delete cookie: " + cookie_file)
             os.remove(cookie_file)
 
-        if response.status != 400:
-            lis = response.xpath("//ul[@class='news-list']/li")
-            all_items = {}
+            yield scrapy.Request('http://weixin.sogou.com/',
+                                 meta={'cookiejar': self.name, 'dont_merge_cookies': True,
+                                       'handle_httpstatus_list': [301, 302, 403]},
+                                 callback=self.parse_profile)
+        else:
+            if response.status != 400:
+                lis = response.xpath("//ul[@class='news-list']/li")
+                all_items = {}
 
-            page_all = response.xpath("//div[@id='pagebar_container']/a/text()").extract()
-            if not self.only_hot and self.type_now['page_all'] == 0:
-                if len(page_all) > 1:
-                    page_all = int(page_all[-2]) if str(page_all[-2]).isdigit() else 1
-                    if self.type_now['page_all'] > page_all:
-                        self.type_now['page_all'] = page_all
+                page_all = response.xpath("//div[@id='pagebar_container']/a/text()").extract()
+                if not self.only_hot and self.type_now['page_all'] == 0:
+                    if len(page_all) > 1:
+                        page_all = int(page_all[-2]) if str(page_all[-2]).isdigit() else 1
+                        if self.type_now['page_all'] > page_all:
+                            self.type_now['page_all'] = page_all
 
-            for item_index, li in enumerate(lis):
-                img = li.xpath(".//div[@class='img-box']/a/img/@src").extract()
+                for item_index, li in enumerate(lis):
+                    img = li.xpath(".//div[@class='img-box']/a/img/@src").extract()
 
-                source_url = li.xpath(".//div[@class='txt-box']/h3/a/@href").extract_first()
-                if not source_url.startswith("http"):
-                    continue
+                    source_url = li.xpath(".//div[@class='txt-box']/h3/a/@href").extract_first()
+                    if not source_url.startswith("http"):
+                        continue
 
-                source_url = str(source_url)
-                title = BeautifulSoup(li.xpath(".//div[@class='txt-box']/h3/a").extract_first(), 'lxml')
-                title = title.find('a').getText()
-                description = li.xpath(".//div[@class='txt-box']/p[@class='txt-info']").extract_first()
-                description = BeautifulSoup(description, "lxml")
-                description = description.find("p").getText()
-                img_d = li.xpath(".//div[@class='txt-box']/div[@class='img-d']/a/span/img/@src").extract()
-                img.extend(img_d)
+                    source_url = str(source_url)
+                    title = BeautifulSoup(li.xpath(".//div[@class='txt-box']/h3/a").extract_first(), 'lxml')
+                    title = title.find('a').getText()
+                    description = li.xpath(".//div[@class='txt-box']/p[@class='txt-info']").extract_first()
+                    description = BeautifulSoup(description, "lxml")
+                    description = description.find("p").getText()
+                    img_d = li.xpath(".//div[@class='txt-box']/div[@class='img-d']/a/span/img/@src").extract()
+                    img.extend(img_d)
 
-                imgs = []
-                for _img in img:
-                    name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz_?(.*)\/(.*?)\/")
-                    inames = name_r.findall(_img)
-                    img_sufix = ".jpg" if len(inames) == 0 or not inames[0][0] else inames[0][0]
-                    iname = "%s.%s"%(inames[0][1], img_sufix) if len(inames) > 0 else None
-                    _img_name = self.util.downfile(_img, img_name=iname, need_down=True)
-                    imgs.append(_img_name)
+                    imgs = []
+                    for _img in img:
+                        name_r = re.compile("mmbiz\.qpic\.cn\/mmbiz_?(.*)\/(.*?)\/")
+                        inames = name_r.findall(_img)
+                        img_sufix = ".jpg" if len(inames) == 0 or not inames[0][0] else inames[0][0]
+                        iname = "%s.%s"%(inames[0][1], img_sufix) if len(inames) > 0 else None
+                        _img_name = self.util.downfile(_img, img_name=iname, need_down=True)
+                        imgs.append(_img_name)
 
-                time.localtime()
-                img = json.dumps(imgs)
-                from_user = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/a/text()").extract_first()
-                source_id = self.util.get_sourceid(str(from_user) + str(title))
+                    time.localtime()
+                    img = json.dumps(imgs)
+                    from_user = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/a/text()").extract_first()
+                    source_id = self.util.get_sourceid(str(from_user) + str(title))
 
-                publish_time = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/span[@class='s2']/script").re(
-                    r"\w+Convert\('(.+?)'\)")
-                publish_time = datetime.datetime.now() if len(publish_time) == 0 else datetime.datetime.strptime(
-                    time.strftime("%Y-%m-%d", time.localtime(int(publish_time[0]))), "%Y-%m-%d")
+                    publish_time = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/span[@class='s2']/script").re(
+                        r"\w+Convert\('(.+?)'\)")
+                    publish_time = datetime.datetime.now() if len(publish_time) == 0 else datetime.datetime.strptime(
+                        time.strftime("%Y-%m-%d", time.localtime(int(publish_time[0]))), "%Y-%m-%d")
 
-                item = CrawlWexinArticleItem()
-                item['title'] = title
-                item['source_url'] = source_url
-                item['source_id'] = source_id
-                item['description'] = description
-                item['image'] = img
-                item['author'] = from_user
-                item['type'] = self.typename
-                item['publish_time'] = publish_time
+                    item = CrawlWexinArticleItem()
+                    item['title'] = title
+                    item['source_url'] = source_url
+                    item['source_id'] = source_id
+                    item['description'] = description
+                    item['image'] = img
+                    item['author'] = from_user
+                    item['type'] = self.typename
+                    item['publish_time'] = publish_time
 
-                if not self.r.sismember("crawl_source_id", source_id):
-                    self.r.sadd("crawl_source_id", source_id)
-                    self.r.sadd("weixin_url", "{url}&source_id={source_id}".format(url=source_url, source_id=source_id))
+                    if not self.r.sismember("crawl_source_id", source_id):
+                        self.r.sadd("crawl_source_id", source_id)
+                        self.r.sadd("weixin_url", "{url}&source_id={source_id}".format(url=source_url, source_id=source_id))
 
-                    all_items[item_index] = item
-		
-            if len(all_items) > 0:
-                yield all_items
+                        all_items[item_index] = item
 
-        util.sleep()
-        next_url = self.get_next_page()
-        if next_url:
-            yield scrapy.Request(next_url, meta={'cookiejar': self.name, 'dont_redirect': True,
-                                       'handle_httpstatus_list': [301, 302, 400]},
-                                 headers=self.get_header(),
-                                 callback=self.parse)
+                if len(all_items) > 0:
+                    yield all_items
+
+            util.sleep()
+            next_url = self.get_next_page()
+            if next_url:
+                yield scrapy.Request(next_url, meta={'cookiejar': self.name, 'dont_redirect': True,
+                                           'handle_httpstatus_list': [301, 302, 400]},
+                                     headers=self.get_header(),
+                                     callback=self.parse)
 
     def get_next_page(self):
         ret = None
