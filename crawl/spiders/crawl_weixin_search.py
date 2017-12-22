@@ -83,7 +83,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
             logging.info("[delete cookie], delete cookie: " + cookie_file)
             os.remove(cookie_file)
 
-            yield scrapy.Request('http://weixin.sogou.com/',
+            yield scrapy.Request('http://weixin.sogou.com/t=%s' % str(int(time.time())),
                                  meta={'cookiejar': self.name, 'dont_merge_cookies': True,
                                        'handle_httpstatus_list': [301, 302, 403]},
                                  callback=self.parse_profile)
