@@ -2,10 +2,9 @@
 from bs4 import BeautifulSoup
 from crawl.Common.Util import util
 from crawl.items import CrawlWexinArticleItem
-import redis, json, urllib, datetime, scrapy, time, re
+import redis, json, urllib, datetime, scrapy, time, re, os, logging
 from crawl.settings import REDIS
-
-from scrapy.http.cookies import CookieJar
+from crawl.settings import Cookie_Dir
 
 class CrawlWeixinSearchSpider(scrapy.Spider):
     name = "crawl_weixin_search"
@@ -23,7 +22,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         self.r = redis.Redis(host=REDIS['host'], port=REDIS['port'])
         self.page_url = "http://weixin.sogou.com/weixin?usip=&query={query}&ft=&tsn=1&et=&interation=&type=2&wxid=&page={page}&ie=utf8"
         self.type_index = 0
-        self.type = [ {'name': '五常大米', 'page_now': 1, 'page_all': 2} ]
+        self.type = [ {'name': '五常大米', 'page_now': 1, 'page_all': 1} ]
         self.type_now = self.type[0]
         self.only_hot = False
         self.typename = self.type_now['name']
@@ -76,6 +75,13 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         print response.url, response.status, response.request.headers
         # with open(self.typename.decode('utf-8').encode('gbk') + ".html", "w") as fs:
         #     fs.write(response.body)
+
+        if response.status == 302:
+            # 如果被302跳转，则删除cookie，将url重新加入到队列中
+            self.r.sadd("weixin_list_url", response.url)
+            cookie_file = os.join(Cookie_Dir, "cookie_"+self.name)
+            logging.info("[delete cookie], delete cookie: " + cookie_file)
+            os.remove(cookie_file)
 
         if response.status != 400:
             lis = response.xpath("//ul[@class='news-list']/li")
@@ -172,6 +178,8 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                 ret = self.page_url.format(query=urllib.quote(keywords), page=1)
                 self.typename = keywords
                 self.only_hot = True
+            else:
+                ret = self.r.spop("weixin_list_url")
 
         return ret
 
