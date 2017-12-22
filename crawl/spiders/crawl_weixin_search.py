@@ -79,7 +79,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         if response.status == 302:
             # 如果被302跳转，则删除cookie，将url重新加入到队列中
             self.r.sadd("weixin_list_url", response.url)
-            cookie_file = os.join(Cookie_Dir, "cookie_"+self.name)
+            cookie_file = os.path.join(Cookie_Dir, "cookie_"+self.name+".pkl")
             logging.info("[delete cookie], delete cookie: " + cookie_file)
             os.remove(cookie_file)
 
