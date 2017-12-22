@@ -33,13 +33,14 @@ class CrawlWeiboSearchSpider(scrapy.Spider):
 
                 if keywords is not None:
                     keywords = urllib.unquote(urllib.unquote(keywords)).decode("utf-8")
-                    self.r.sadd("weixin_hot_keywords", keywords)
-                    self.r.sadd("weibo_hot_keywords", keywords)
+                    if not self.r.sismember("old_hot_keywords", keywords):
+                        self.r.sadd("weixin_hot_keywords", keywords)
+                        self.r.sadd("weibo_hot_keywords", keywords)
 
-                    item = CrawlHotkey()
-                    item['time'] = datetime.datetime.now()
-                    item['keyword'] = keywords
-                    item['order'] = index
-                    item['source_id'] = util.get_sourceid(keywords)
+                        item = CrawlHotkey()
+                        item['time'] = datetime.datetime.now()
+                        item['keyword'] = keywords
+                        item['order'] = index
+                        item['source_id'] = util.get_sourceid(keywords)
 
-                    yield item
+                        yield item

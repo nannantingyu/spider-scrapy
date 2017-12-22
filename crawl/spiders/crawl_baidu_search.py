@@ -23,13 +23,14 @@ class CrawlBaiduSearchSpider(scrapy.Spider):
 
             if data:
                 print data.decode('utf-8').encode('gbk')
-                self.r.sadd("weixin_hot_keywords", data)
-                self.r.sadd("weibo_hot_keywords", data)
+                if not self.r.sismember("old_hot_keywords", data):
+                    self.r.sadd("weixin_hot_keywords", data)
+                    self.r.sadd("weibo_hot_keywords", data)
 
-                item = CrawlHotkey()
-                item['time'] = datetime.datetime.now()
-                item['keyword'] = data
-                item['order'] = index
-                item['source_id'] = util.get_sourceid(data)
+                    item = CrawlHotkey()
+                    item['time'] = datetime.datetime.now()
+                    item['keyword'] = data
+                    item['order'] = index
+                    item['source_id'] = util.get_sourceid(data)
 
-                yield item
+                    yield item

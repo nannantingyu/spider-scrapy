@@ -179,6 +179,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
         else:
             # 从redis读取热门搜索词
             keywords = self.r.spop("weixin_hot_keywords")
+            self.r.sadd("old_hot_keywords", keywords)
             if keywords:
                 ret = self.page_url.format(query=urllib.quote(keywords), page=1)
                 self.typename = keywords
