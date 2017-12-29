@@ -100,9 +100,9 @@ class CrawlWeiboHotSpider(scrapy.Spider):
                     print e
 
                 item = CrawlWeibo()
-                item['images'] = ",".join(images)
+                item['images'] = ",".join([x.replace("http:", "https:") for x in images])
                 item['content'] = content
-                item['author_img'] = author_img
+                item['author_img'] = author_img.replace("http:", "https:")
                 item['author_name'] = author_name
                 item['author_link'] = author_link
                 item['pub_time'] = pub_time
