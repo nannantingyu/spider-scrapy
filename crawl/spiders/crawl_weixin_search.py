@@ -127,7 +127,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                     time.localtime()
                     img = json.dumps(imgs)
                     from_user = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/a/text()").extract_first()
-                    source_id = self.util.get_sourceid(str(from_user) + str(title))
+                    source_id = self.util.get_sourceid(str(title))
 
                     publish_time = li.xpath(".//div[@class='txt-box']//div[@class='s-p']/span[@class='s2']/script").re(
                         r"\w+Convert\('(.+?)'\)")
