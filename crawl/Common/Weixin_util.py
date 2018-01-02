@@ -12,7 +12,7 @@ class weixin_body_parser:
         # 视频地址处理
         video_src_pat = re.compile(r'\sdata\-src="(https?:\/\/v\.qq.*?)"')
         htmlcontent = video_src_pat.sub(' src="\g<1>" ', htmlcontent)
-        htmlcontent = htmlcontent.replace('https://v.qq.com/iframe/preview.html', 'http://v.qq.com/iframe/player.html').replace("width=500", "width=345")
+        htmlcontent = htmlcontent.replace('https://v.qq.com/iframe/preview.html', 'https://v.qq.com/iframe/player.html').replace("width=500", "width=345")
 
         # 图片地址处理
         # 将图片地址改为经过服务器的链接（加自己的前缀）
