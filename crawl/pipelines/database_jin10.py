@@ -136,7 +136,7 @@ class Jin10Pipeline(object):
                     print lastday.strftime('%Y-%m-%d 00:00:00'), lastday.strftime('%Y-%m-%d 23:59:59')
                     session.query(CrawlEconomicCalendar).filter(and_(
                         CrawlEconomicCalendar.pub_time.between(lastday.strftime('%Y-%m-%d 00:00:00'), lastday.strftime('%Y-%m-%d 23:59:59')),
-                        ~CrawlEconomicCalendar.dataname_id.in_(now_dataname_ids)
+                        ~CrawlEconomicCalendar.source_id.in_(now_dataname_ids)
                     )).delete(synchronize_session=False)
 
             elif 0 in item and isinstance(item[0], items.CrawlEconomicEventItem):
