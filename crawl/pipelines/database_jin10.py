@@ -95,7 +95,7 @@ class Jin10Pipeline(object):
                         ditem = item[ditem]
                         crawlEconomicCalendar = CrawlEconomicCalendar(**ditem)
 
-                        now_dataname_ids.append(crawlEconomicCalendar.dataname_id)
+                        now_dataname_ids.append(crawlEconomicCalendar.source_id)
                         query = session.query(CrawlEconomicCalendar.id).filter(and_(
                             CrawlEconomicCalendar.source_id == crawlEconomicCalendar.source_id,
                             # CrawlEconomicCalendar.pub_time == crawlEconomicCalendar.pub_time
