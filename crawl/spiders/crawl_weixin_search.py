@@ -150,6 +150,9 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
 
                         all_items[item_index] = item
 
+                    if self.only_hot:
+                        break
+
                 if len(all_items) > 0:
                     yield all_items
 
