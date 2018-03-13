@@ -196,7 +196,7 @@ class PhantomJSMiddleware(object):
     @classmethod
     def process_request(cls, request, spider):
         if request.meta.has_key('PhantomJS'):
-            driver = webdriver.PhantomJS(service_log_path="logs/spider.log")
+            driver = webdriver.PhantomJS("/usr/local/phantomjs/bin/phantomjs", service_log_path="logs/spider.log")
             # driver.get(request.url)
 
             if request.meta.has_key('cookiefile'):
