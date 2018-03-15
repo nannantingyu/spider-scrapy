@@ -22,7 +22,7 @@ class CrawlBaiduSearchSpider(scrapy.Spider):
             data = tr.xpath("./td[@class='keyword']/a[1]/text()").extract_first()
 
             if data:
-                print data.decode('utf-8').encode('gbk')
+                print data
                 if not self.r.sismember("old_hot_keywords", data):
                     self.r.sadd("weixin_hot_keywords", data)
                     self.r.sadd("weibo_hot_keywords", data)
