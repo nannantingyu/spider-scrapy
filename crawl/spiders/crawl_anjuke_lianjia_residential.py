@@ -40,16 +40,13 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
     def parse_residential_search(self, response):
         href = response.xpath(".//ul[@class='listContent']/li/a/@href").extract_first()
         self.residential_id = href.split("/")[-2]
-        print href, self.residential_id
 
         yield scrapy.Request(href, meta={'cookiejar': self.name, 'platform': 'pc'},
                              callback=self.get_residential_house_id)
 
     def get_residential_house_id(self, response):
         house_ids = response.xpath(".//div[@class='m-content']//a/@href").re(r"\/ershoufang\/(\d+)\.")
-        print house_ids
         if len(house_ids) < 1:
-            print "Nothing ershoufang got"
             house_ids = response.xpath(".//div[@class='m-content']//a/@href").re(r"\/chengjiao\/(\d+)\.")
 
         self.house_id = house_ids[0] if len(house_ids) > 0 else None
@@ -110,5 +107,4 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
         item['type'] = 'residential'
         item['anjuke_residential_id'] = self.anjuke_residential_id
 
-        print item
         yield item
