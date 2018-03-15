@@ -52,9 +52,11 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
             print "Nothing ershoufang got"
             house_ids = response.xpath(".//div[@class='m-content']//a/@href").re(r"\/chengjiao\/(\d+)\.")
 
-        self.house_id = house_ids[0]
-
-        yield scrapy.Request(self.url_info.format(house_id=self.house_id, residential_id=self.residential_id),
+        self.house_id = house_ids[0] if len(house_ids) > 0 else None
+        if self.house_id is None:
+            print "No"
+        else:
+            yield scrapy.Request(self.url_info.format(house_id=self.house_id, residential_id=self.residential_id),
                              meta={'cookiejar': self.name, 'platform': 'pc'},
                              callback=self.get_parse_residential_info)
 
