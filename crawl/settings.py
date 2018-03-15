@@ -55,7 +55,8 @@ ITEM_PIPELINES = {
     'crawl.pipelines.database_jin10.Jin10Pipeline': 2,
     'crawl.pipelines.database_fx678.Fx678Pipeline': 3,
     'crawl.pipelines.database_oprate.OpratePipeline': 4,
-    'crawl.pipelines.database_other.OtherPipeline': 5
+    'crawl.pipelines.database_crypt.CryptPipeline': 5,
+    'crawl.pipelines.database_other.OtherPipeline': 6
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

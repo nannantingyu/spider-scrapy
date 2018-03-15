@@ -13,6 +13,8 @@ from crawl.models.crawl_lianjia_agent import LianjiaAgent
 from crawl.models.crawl_lianjia_feedback import LianjiaFeedback
 from crawl.models.crawl_lianjia_residential import LianjiaResidential
 from crawl.models.crawl_lianjia_visited import LianjiaVisited
+from crawl.models.crawl_house_history import CrawlHouseHistory
+from crawl.models.crawl_anjuke_residentail import CrawlAnjukeResidential
 from crawl.items import LianjiaResidentialItem
 from crawl.Common.Util import session_scope
 import logging
@@ -34,6 +36,10 @@ class DatabasePipeline(object):
             self.parse_lianjia_visited(item)
         elif spider.name in ['crawl_lianjia_feedback']:
             self.parse_lianjia_feedback(item)
+        elif spider.name in ['crawl_house_history']:
+            self.parse_house_history(item)
+        elif spider.name in ['crawl_anjuke_residential']:
+            self.parse_anjuke_residentail(item)
         elif spider.name in ['crawl_lianjia_residential']:
             if isinstance(item, LianjiaResidentialItem):
                 self.parse_lianjia_residential(item)
@@ -41,6 +47,45 @@ class DatabasePipeline(object):
                 self.parse_agent(item)
         else:
             return item
+
+    def parse_anjuke_residentail(self, item):
+        with session_scope(self.sess) as session:
+            crawlAnjukeResidential = CrawlAnjukeResidential(**item)
+
+            query = session.query(CrawlHouseHistory.id).filter(and_(
+                crawlAnjukeResidential.residential_id == CrawlAnjukeResidential.residential_id,
+            )).one_or_none()
+
+            if query:
+                session.query(CrawlAnjukeResidential).filter(
+                    and_(
+                        CrawlAnjukeResidential.residential_id == crawlAnjukeResidential.residential_id,
+                    )
+                ).update(item)
+            else:
+                session.add(crawlAnjukeResidential)
+
+    def parse_house_history(self, item):
+        with session_scope(self.sess) as session:
+            houseHistory = CrawlHouseHistory(**item)
+
+            query = session.query(CrawlHouseHistory.id).filter(and_(
+                CrawlHouseHistory.year == houseHistory.year,
+                CrawlHouseHistory.month == houseHistory.month,
+                CrawlHouseHistory.residential_id == houseHistory.residential_id,
+            )).one_or_none()
+
+            if query:
+                session.query(LianjiaHouse).filter(
+                    and_(
+                        CrawlHouseHistory.year == houseHistory.year,
+                        CrawlHouseHistory.month == houseHistory.month,
+                        CrawlHouseHistory.residential_id == houseHistory.residential_id,
+                    )
+                ).update(item)
+            else:
+                session.add(houseHistory)
+
 
     def parse_lianjia_house(self, item):
         with session_scope(self.sess) as session:
