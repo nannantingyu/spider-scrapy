@@ -40,6 +40,8 @@ class DatabasePipeline(object):
             self.parse_house_history(item)
         elif spider.name in ['crawl_anjuke_residential']:
             self.parse_anjuke_residentail(item)
+        elif spider.name in ['crawl_anjuke_lianjia_residential']:
+            self.parse_anjuke_lianjia_residential(item)
         elif spider.name in ['crawl_lianjia_residential']:
             if isinstance(item, LianjiaResidentialItem):
                 self.parse_lianjia_residential(item)
@@ -47,6 +49,30 @@ class DatabasePipeline(object):
                 self.parse_agent(item)
         else:
             return item
+
+    def parse_anjuke_lianjia_residential(self, item):
+        type = item['type']
+        del item['type']
+        if type == "residential":
+            anjuke_id = item['anjuke_residential_id']
+            del item['anjuke_residential_id']
+            with session_scope(self.sess) as session:
+                session.query(CrawlAnjukeResidential).filter(
+                    and_(
+                        CrawlAnjukeResidential.residential_id == anjuke_id
+                    )
+                ).update(item)
+        elif type == 'agent':
+            with session_scope(self.sess) as session:
+                lianjiaAgent = LianjiaAgent(**item)
+                query = session.query(LianjiaFeedback.id).filter(and_(
+                    LianjiaAgent.agent_id == lianjiaAgent.agent_id
+                )).one_or_none()
+
+                if query is None:
+                    session.add(lianjiaAgent)
+                else:
+                    session.query(LianjiaAgent).filter(LianjiaAgent.id == query[0]).update(item)
 
     def parse_anjuke_residentail(self, item):
         with session_scope(self.sess) as session:
