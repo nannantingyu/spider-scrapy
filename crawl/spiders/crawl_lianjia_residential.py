@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import datetime, redis, json
+import datetime, redis, json, logging
 from crawl.settings import REDIS
-import logging
 from crawl.items import LianjiaResidentialItem, LianjiaAgentItem
 from crawl.Common.Util import util
 
