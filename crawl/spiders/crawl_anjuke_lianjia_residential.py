@@ -22,7 +22,7 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
             params = {x[0]: x[1] for x in [[l for l in m.split(":")] for m in kwargs['args'].split(",")]}
 
             if "name" in params:
-                self.residential_name = params['name'].decode("gbk").encode("utf-8")
+                self.residential_name = params['name']
 
             if "id" in params:
                 self.anjuke_residential_id = params['id']
