@@ -27,7 +27,7 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
             if "id" in params:
                 self.anjuke_residential_id = params['id']
 
-            print ("将开始抓取【%s】的链家详情" % self.residential_name).decode("utf-8")
+            # print ("将开始抓取【%s】的链家详情" % self.residential_name).decode("utf-8")
 
     def start_requests(self):
         if self.residential_name:
@@ -35,7 +35,8 @@ class CrawlAnjukeLianjiaResidentialSpider(scrapy.Spider):
                                    meta={'cookiejar': self.name, 'platform': 'pc'},
                                    callback=self.parse_residential_search)]
         else:
-            print "Please input residential name"
+            # print "Please input residential name"
+	    pass
 
     def parse_residential_search(self, response):
         href = response.xpath(".//ul[@class='listContent']/li/a/@href").extract_first()
