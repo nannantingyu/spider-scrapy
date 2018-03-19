@@ -28,6 +28,8 @@ class CryptPipeline(object):
         """process news item"""
         if spider.name in ['crawl_cryptomiso']:
             self.parse_cryptomiso(item)
+        else:
+            return item
 
     def parse_cryptomiso(self, item):
         print item
