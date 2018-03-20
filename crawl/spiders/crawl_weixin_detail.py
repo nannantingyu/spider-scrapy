@@ -21,6 +21,7 @@ class CrawlWeixinDetailSpider(scrapy.Spider):
 
     def start_requests(self):
         detail_url = self.get_next_url()
+	print detail_url
         if detail_url is not None:
             return [scrapy.Request(detail_url, meta={'cookiejar': self.name, 'dont_redirect': True,
                                          'handle_httpstatus_list': [301, 302, 404]},

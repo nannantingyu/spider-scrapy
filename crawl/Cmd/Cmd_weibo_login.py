@@ -155,7 +155,7 @@ class CmdWeiboLogin:
         else:
             pcid = sever_data["pcid"]
             self.get_cha(pcid)
-            postdata['door'] = input(u"请输入验证码")
+            postdata['door'] = raw_input(u"请输入验证码")
             login_page = self.session.post(login_url, data=postdata, headers=self.headers)
 
         self.save_cookie(login_page.cookies)
