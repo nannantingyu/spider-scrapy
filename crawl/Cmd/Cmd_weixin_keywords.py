@@ -112,4 +112,3 @@ class CmdWeixinKeywords:
 
                 if len(all_keywords_map) > 0:
                     session.add_all(all_keywords_map)
-

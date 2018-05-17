@@ -6,7 +6,7 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-import random, time
+import random, time, redis
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 from scrapy.downloadermiddlewares.cookies import CookiesMiddleware
 import logging, re, os, json
@@ -63,6 +63,18 @@ class CrawlJujin8SpiderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
+
+class MyproxiesSpiderMiddleware(object):
+    def __init__(self, ip=''):
+        self.ip = ip
+        self.r = redis.Redis(host="127.0.0.1", port=6379)
+
+    def process_request(self, request, spider):
+        if request.meta.get('ip', False):
+            ip = self.r.spop("ips")
+            print("this is ip:" + ip)
+            request.meta["proxy"] = 'http://213.136.86.234:80'
+
 class RotateUserAgentMiddleware(UserAgentMiddleware):
     """避免被ban策略之一：使用useragent池。
     使用注意：需在settings.py中进行相应的设置。
@@ -75,6 +87,8 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         agentlists = self.user_agent_list
         if request.meta.get('platform', False):
             agentlists = self.user_agent_list_pc
+        else:
+            agentlists = self.user_agent_list_m
 
         useragent = random.choice(agentlists)
 
@@ -124,6 +138,12 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
         "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+    ]
+
+    user_agent_list_m = [
+        "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+        "Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1"
     ]
 
 class CookiesSaveingMiddleware(CookiesMiddleware):

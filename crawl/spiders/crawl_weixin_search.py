@@ -107,6 +107,7 @@ class CrawlWeixinSearchSpider(scrapy.Spider):
                         continue
 
                     source_url = str(source_url)
+                    source_url = source_url.replace("https", "http").replace("http", "https")
                     title = BeautifulSoup(li.xpath(".//div[@class='txt-box']/h3/a").extract_first(), 'lxml')
                     title = title.find('a').getText()
                     description = li.xpath(".//div[@class='txt-box']/p[@class='txt-info']").extract_first()

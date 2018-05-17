@@ -94,6 +94,7 @@ COOKIES_ENABLED = True
 DOWNLOADER_MIDDLEWARES = {
     # 这里是下载中间件
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'crawl.middlewares.middlewares.MyproxiesSpiderMiddleware': 300,
     'crawl.middlewares.middlewares.RotateUserAgentMiddleware': 400,
     'crawl.middlewares.middlewares.CookiesSaveingMiddleware': 699,
     'crawl.middlewares.middlewares.PhantomJSMiddleware': 700,
