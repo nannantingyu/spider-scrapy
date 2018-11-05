@@ -14,6 +14,7 @@ from crawl.models.crawl_weibo_hotkey import Crawl_Weibo_Hotkey
 from crawl.models.crawl_baidu_hotkey import Crawl_Baidu_Hotkey
 from crawl.models.crawl_weixin_article_detail import CrawlWeixinArticleDetail
 from crawl.models.crawl_weibo import Crawl_Weibo
+from crawl.models.crawl_sentence import Sentence
 from crawl.items import CrawlWexinArticleItem
 
 class OtherPipeline(object):
@@ -40,6 +41,8 @@ class OtherPipeline(object):
             self.parse_baidu_seach(item)
         elif spider.name in ['crawl_weibo_hot']:
             self.parse_weibo(item)
+        elif spider.name in ['crawl_sentence']:
+            self.parse_sentence(item)
 
     def parse_weibo(self, item):
         with session_scope(self.sess) as session:
@@ -50,6 +53,21 @@ class OtherPipeline(object):
             if not query:
                 weibo = Crawl_Weibo(**item)
                 session.add(weibo)
+
+    def parse_sentence(self, item):
+        with session_scope(self.sess) as session:
+            sentence = Sentence(**item)
+            query = session.query(Sentence.id).filter(
+                Sentence.source_id == sentence.source_id
+            ).one_or_none()
+
+            if query is None:
+                session.add(sentence)
+            else:
+                session.query(Sentence).filter(
+                    Sentence.id == query[0]
+                ).update(item)
+
 
     def parse_weixin_search(self, item):
         with session_scope(self.sess) as session:
